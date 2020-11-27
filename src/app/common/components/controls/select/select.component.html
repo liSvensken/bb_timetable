@@ -1,5 +1,5 @@
 <div class="select-wrapper" (click)="optionsToggle()">
-  <div class="title">Вид услуг</div>
+  <div class="title" [class.mod-border]="(showOptions$ | async)">Вид услуг</div>
   <div class="options-wrapper" [class.mod-show]="(showOptions$ | async)">
     <label class="option" *ngFor="let item of (servicesList$ | async)">
       <input type="radio" [value]="item.id"
