@@ -1,0 +1,16 @@
+@font-face {
+  font-family: 'Tahoma';
+  src: url('tahoma.ttf');
+  font-style: normal;
+  font-weight: normal;
+  font-display: fallback;
+}
+
+
+@font-face {
+  font-family: 'Faktum Test';
+  src: url('tahoma-Bold.ttf');
+  font-style: normal;
+  font-weight: bold;
+  font-display: fallback;
+}

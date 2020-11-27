@@ -1,0 +1,12 @@
+<div class="select-wrapper" (click)="optionsToggle()">
+  <div class="title">Вид услуг</div>
+  <div class="options-wrapper" [class.mod-show]="(showOptions$ | async)">
+    <label class="option" *ngFor="let item of (servicesList$ | async)">
+      <input type="radio" [value]="item.id"
+             [ngModel]="value"
+             (ngModelChange)="updateValue($event)"
+             [disabled]="disabled">
+      <span class="option-content">{{item.name}}</span>
+    </label>
+  </div>
+</div>

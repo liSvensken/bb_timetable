@@ -1,0 +1,61 @@
+@import 'colors';
+
+.select-wrapper {
+  width: 240px;
+  background-color: #ffffff;
+  border: 1px solid $border-color;
+  border-radius: 8px;
+  appearance: none; // убираем дефолнтные стрелочки
+}
+
+.title {
+  position: relative;
+  color: #757575;
+
+  &:after {
+    position: absolute;
+    content: '';
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 8px solid transparent;
+    display: inline-block;
+    border-top-color: #bd8800;
+    border-bottom: 0;
+  }
+}
+
+.title, .option {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.options-wrapper {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 500ms;
+  display: flex;
+  flex-direction: column;
+
+  &.mod-show {
+    max-height: 200px;
+  }
+}
+
+.option {
+  color: #000000;
+
+  &:hover {
+    background-color: #BEFDE6;
+  }
+
+  input {
+    display: none;
+  }
+}
+
+.option-content {
+
+}

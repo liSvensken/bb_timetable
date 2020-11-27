@@ -1,0 +1,9 @@
+<label class="input-wrapper">
+  <input class="input" type="text" [placeholder]="hint"
+         [ngModel]="value"
+         (ngModelChange)="updateValue($event)"
+         [disabled]="disabled"
+         (focus)="placeholderOffset()"
+         (blur)="placeholderOffset()">
+  <span class="placeholder" [class.mod-top]="(placeholderTop$ | async)">{{ placeholder }}</span>
+</label>

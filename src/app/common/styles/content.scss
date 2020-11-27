@@ -1,0 +1,134 @@
+@import "colors";
+@import "consts";
+
+.gl-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.gl-layout-header {
+  flex: 0 0 auto;
+  background-color: rgb(234 234 234);
+}
+
+.gl-layout-content {
+  background: radial-gradient(circle at right, $main-color 55%, $secondary-color 55%);
+  flex: 1 1 100%;
+}
+
+.gl-layout-footer {
+  flex: 0 0 auto;
+}
+
+.gl-page-content {
+  padding-left: 100px;
+  padding-right: 100px;
+  margin: 0 auto;
+}
+
+.gl-header-wrapper {
+  height: $header-height;
+}
+
+.gl-header-content {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.gl-header-item-wrapper {
+  & + & {
+    margin-left: 30px;
+  }
+
+  .gl-sections-caption {
+    font-size: 18px;
+    font-weight: bold;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .gl-link-active {
+    text-decoration: underline;
+    color: $main-color;
+  }
+}
+
+.gl-link {
+  &:hover {
+    text-decoration: underline;
+    color: $main-color;
+  }
+}
+
+.gl-window-inlet-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.gl-window-inlet {
+  width: 400px;
+  background-color: $main-background-color;
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px solid $border-color;
+}
+
+.gl-radio-group {
+  margin-bottom: 20px;
+}
+
+.gl-input-radio-wrapper {
+  input {
+    display: none;
+
+    &:checked {
+      +.gl-input-radio-content {
+        &.master {
+          &:after {
+            background-color: $secondary-color;
+          }
+        }
+
+        &.client {
+          &:after {
+            background-color: $main-color;
+          }
+        }
+      }
+    }
+  }
+
+  & + & {
+    margin-left: 40px;
+  }
+}
+
+.gl-input-radio-content {
+  position: relative;
+  padding-left: 28px;
+
+  &:after {
+    position: absolute;
+    content: '';
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 100px;
+    background-color: #ffffff;
+    border: 2px solid $border-color;
+  }
+}
+
+//.gl-inlet-window-link-wrapper {
+//  display: flex;
+//  justify-content: center;
+//  margin-top: 30px;
+//  color: #5500f8;
+//}

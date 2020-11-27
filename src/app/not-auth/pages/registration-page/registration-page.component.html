@@ -1,0 +1,36 @@
+<div class="gl-window-inlet-wrapper">
+  <div class="gl-window-inlet">
+    <div class="gl-radio-group">
+      <label class="gl-input-radio-wrapper">
+        <input type="radio" value="master" name="status" [formControl]="status">
+        <span class="gl-input-radio-content master">Мастер</span>
+      </label>
+      <label class="gl-input-radio-wrapper">
+        <input type="radio" value="client" name="status" [formControl]="status">
+        <span class="gl-input-radio-content client">Клиент</span>
+      </label>
+    </div>
+
+    <ng-container *ngIf="true">
+      <form class="form-wrapper" [formGroup]="form">
+
+        <ng-container *ngIf="true">
+          <app-select formControlName="service"></app-select>
+        </ng-container>
+
+        <app-input formControlName="name" placeholder="Имя" hint="Ex. natasha_romanov"></app-input>
+        <app-input formControlName="email" placeholder="email" hint="Ex. pochta@gmail.ru"></app-input>
+        <app-input formControlName="password" placeholder="Пароль"></app-input>
+        <app-input formControlName="passwordDouble" placeholder="Повторите пароль"></app-input>
+
+        <div class="gl-btn-wrapper">
+          <button type="submit">Зарегистрироваться</button>
+        </div>
+      </form>
+    </ng-container>
+
+    <div class="gl-inlet-window-link-wrapper">
+      <a class="gl-link" [routerLink]="['/not-auth/authorization']">Авторизация</a>
+    </div>
+  </div>
+</div>
