@@ -2,3 +2,15 @@
   display: flex;
   flex-direction: column;
 }
+
+.radio-group-wrapper, .select-wrapper, .inputs-wrapper {
+  margin-bottom: 20px;
+}
+
+app-input {
+  display: block;
+
+  & + & {
+    margin-top: 6px;
+  }
+}

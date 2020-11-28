@@ -1,13 +1,13 @@
 <div class="gl-window-inlet-wrapper">
   <div class="gl-window-inlet">
-    <div class="gl-radio-group">
+    <div class="radio-group-wrapper">
       <label class="gl-input-radio-wrapper">
         <input type="radio" value="master" name="status" [formControl]="status">
-        <span class="gl-input-radio-content master">Мастер</span>
+        <span class="gl-input-radio-content">Мастер</span>
       </label>
       <label class="gl-input-radio-wrapper">
         <input type="radio" value="client" name="status" [formControl]="status">
-        <span class="gl-input-radio-content client">Клиент</span>
+        <span class="gl-input-radio-content">Клиент</span>
       </label>
     </div>
 
@@ -15,13 +15,17 @@
       <form class="form-wrapper" [formGroup]="form">
 
         <ng-container *ngIf="true">
-          <app-select formControlName="service"></app-select>
+          <div class="select-wrapper">
+            <app-select formControlName="service"></app-select>
+          </div>
         </ng-container>
 
-        <app-input formControlName="name" placeholder="Имя" hint="Ex. natasha_romanov"></app-input>
-        <app-input formControlName="email" placeholder="email" hint="Ex. pochta@gmail.ru"></app-input>
-        <app-input formControlName="password" placeholder="Пароль"></app-input>
-        <app-input formControlName="passwordDouble" placeholder="Повторите пароль"></app-input>
+        <div class="inputs-wrapper">
+          <app-input formControlName="name" placeholder="Имя" hint="Ex. natasha_romanov"></app-input>
+          <app-input formControlName="email" placeholder="email" hint="Ex. pochta@gmail.ru"></app-input>
+          <app-input formControlName="password" placeholder="Пароль"></app-input>
+          <app-input formControlName="passwordDouble" placeholder="Повторите пароль"></app-input>
+        </div>
 
         <div class="gl-btn-wrapper">
           <button type="submit">Зарегистрироваться</button>

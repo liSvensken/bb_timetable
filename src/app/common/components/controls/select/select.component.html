@@ -1,12 +1,12 @@
-<div class="select-wrapper" (click)="optionsToggle()">
-  <div class="title" [class.mod-border]="(showOptions$ | async)">Вид услуг</div>
-  <div class="options-wrapper" [class.mod-show]="(showOptions$ | async)">
-    <label class="option" *ngFor="let item of (servicesList$ | async)">
-      <input type="radio" [value]="item.id"
-             [ngModel]="value"
-             (ngModelChange)="updateValue($event)"
-             [disabled]="disabled">
-      <span class="option-content">{{item.name}}</span>
-    </label>
-  </div>
-</div>
+<ng-select [ngModel]="value"
+           (ngModelChange)="updateValue($event)"
+           [disabled]="disabled"
+           notFoundText="Услуга не найдена"
+           [placeholder]="'Выберете услугу'"
+           [clearable]="false"
+           [multiple]="true">
+  <ng-option *ngFor="let item of (servicesList$ | async)" [value]="item.id">{{item.name}}</ng-option>
+</ng-select>
+
+
+

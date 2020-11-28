@@ -10,10 +10,13 @@
 .gl-layout-header {
   flex: 0 0 auto;
   background-color: rgb(234 234 234);
+  position: relative;
+  z-index: 1;
 }
 
 .gl-layout-content {
-  background: radial-gradient(circle at right, $main-color 55%, $secondary-color 55%);
+  background-image: url("../../../assets/image/background-main.jpg");
+  background-repeat: repeat;
   flex: 1 1 100%;
 }
 
@@ -76,10 +79,7 @@
   padding: 20px;
   border-radius: 10px;
   border: 2px solid $border-color;
-}
-
-.gl-radio-group {
-  margin-bottom: 20px;
+  box-shadow: 0 0px 10px 3px #848484;
 }
 
 .gl-input-radio-wrapper {
@@ -87,17 +87,9 @@
     display: none;
 
     &:checked {
-      +.gl-input-radio-content {
-        &.master {
-          &:after {
-            background-color: $secondary-color;
-          }
-        }
-
-        &.client {
-          &:after {
-            background-color: $main-color;
-          }
+      + .gl-input-radio-content {
+        &:after {
+          background-color: #000000;
         }
       }
     }

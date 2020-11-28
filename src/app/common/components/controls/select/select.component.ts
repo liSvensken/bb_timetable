@@ -42,10 +42,11 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
   disabled = false;
 
   servicesList$ = new BehaviorSubject(null);
-  showOptions$ = new BehaviorSubject(false);
 
-  private onChange = (value: any) => {};
-  private onTouched = () => {};
+  private onChange = (value: any) => {
+  }
+  private onTouched = () => {
+  }
 
   constructor() {
   }
@@ -74,9 +75,5 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
     this.value = insideValue;
     this.onChange(insideValue);
     this.onTouched();
-  }
-
-  optionsToggle(): void {
-    this.showOptions$.next(!this.showOptions$.value);
   }
 }
