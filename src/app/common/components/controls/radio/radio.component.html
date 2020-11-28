@@ -1,1 +1,9 @@
-<p>radio works!</p>
+<label class="input-radio-wrapper">
+  <input type="radio"
+         [value]="value"
+         [name]="name"
+         [ngModel]="valueControl"
+         (ngModelChange)="updateValue($event)"
+         [disabled]="disabled">
+  <span class="input-radio-content">{{ content }}</span>
+</label>

@@ -1,40 +1,40 @@
 <div class="gl-window-inlet-wrapper">
-  <div class="gl-window-inlet">
-    <div class="radio-group-wrapper">
-      <label class="gl-input-radio-wrapper">
-        <input type="radio" value="master" name="status" [formControl]="status">
-        <span class="gl-input-radio-content">Мастер</span>
-      </label>
-      <label class="gl-input-radio-wrapper">
-        <input type="radio" value="client" name="status" [formControl]="status">
-        <span class="gl-input-radio-content">Клиент</span>
-      </label>
-    </div>
+  <div class="gl-window-inlet-background">
+    <div class="gl-window-inlet">
+      <div class="gl-stripes-block"></div>
+      <div class="gl-window-inlet-content">
 
-    <ng-container *ngIf="true">
-      <form class="form-wrapper" [formGroup]="form">
+        <div class="radio-group-wrapper">
+          <app-radio value="master" name="status" [formControl]="status" content="Мастер"></app-radio>
+          <app-radio value="client" name="status" [formControl]="status" content="Клиент"></app-radio>
+        </div>
 
         <ng-container *ngIf="true">
-          <div class="select-wrapper">
-            <app-select formControlName="service"></app-select>
-          </div>
+          <form class="form-wrapper" [formGroup]="form">
+
+            <ng-container *ngIf="true">
+              <div class="select-wrapper">
+                <app-select formControlName="service"></app-select>
+              </div>
+            </ng-container>
+
+            <div class="inputs-wrapper">
+              <app-input formControlName="name" placeholder="Имя" hint="Ex. natasha_romanov"></app-input>
+              <app-input formControlName="email" placeholder="email" hint="Ex. pochta@gmail.ru"></app-input>
+              <app-input formControlName="password" placeholder="Пароль"></app-input>
+              <app-input formControlName="passwordDouble" placeholder="Повторите пароль"></app-input>
+            </div>
+
+            <div class="bnt-wrapper">
+              <app-main-button content="Зарегистрироваться"></app-main-button>
+            </div>
+          </form>
         </ng-container>
 
-        <div class="inputs-wrapper">
-          <app-input formControlName="name" placeholder="Имя" hint="Ex. natasha_romanov"></app-input>
-          <app-input formControlName="email" placeholder="email" hint="Ex. pochta@gmail.ru"></app-input>
-          <app-input formControlName="password" placeholder="Пароль"></app-input>
-          <app-input formControlName="passwordDouble" placeholder="Повторите пароль"></app-input>
+        <div class="link-wrapper">
+          <a class="gl-link" [routerLink]="['/not-auth/authorization']">Авторизация</a>
         </div>
-
-        <div class="gl-btn-wrapper">
-          <button type="submit">Зарегистрироваться</button>
-        </div>
-      </form>
-    </ng-container>
-
-    <div class="gl-inlet-window-link-wrapper">
-      <a class="gl-link" [routerLink]="['/not-auth/authorization']">Авторизация</a>
+      </div>
     </div>
   </div>
 </div>

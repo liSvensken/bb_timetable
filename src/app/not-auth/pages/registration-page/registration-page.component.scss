@@ -3,8 +3,14 @@
   flex-direction: column;
 }
 
-.radio-group-wrapper, .select-wrapper, .inputs-wrapper {
+.radio-group-wrapper, .select-wrapper, .inputs-wrapper, .bnt-wrapper {
   margin-bottom: 20px;
+}
+
+app-radio {
+  & + & {
+    margin-left: 40px;
+  }
 }
 
 app-input {
@@ -13,4 +19,9 @@ app-input {
   & + & {
     margin-top: 6px;
   }
+}
+
+.link-wrapper {
+  display: flex;
+  justify-content: center;
 }

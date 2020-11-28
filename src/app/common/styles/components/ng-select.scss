@@ -1,10 +1,5 @@
 @import 'colors';
 
-// заголовок select-a и input внутри него
-.ng-select .ng-select-container, .ng-select .ng-select-container .ng-value-container .ng-input > input {
-  cursor: pointer;
-}
-
 // wrapper всего select-a
 .ng-select .ng-select-container {
   border: 1px solid $border-color;
@@ -17,10 +12,16 @@
   box-shadow: none;
 }
 
-// выбранные элементы, отображаемые в заголовке
+// выбранные options, отображаемые в заголовке
 .ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value {
-  background-color: $main-color;
+  background-color: $main-color-opacity-3;
   color: $input-placeholder
+}
+
+// выбранные options в списке
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected,
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected.ng-option-marked {
+  background-color: $main-color-opacity-3;
 }
 
 // hover options

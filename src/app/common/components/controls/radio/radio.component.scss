@@ -1,0 +1,33 @@
+@import "colors";
+
+.input-radio-wrapper {
+  input {
+    display: none;
+
+    &:checked {
+      + .input-radio-content {
+        &:after {
+          background-color: $main-color-opacity-3;
+        }
+      }
+    }
+  }
+}
+
+.input-radio-content {
+  position: relative;
+  padding-left: 28px;
+
+  &:after {
+    position: absolute;
+    content: '';
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 100px;
+    background-color: #ffffff;
+    border: 2px solid $border-color;
+  }
+}
