@@ -1,6 +1,7 @@
-import { Component, forwardRef, OnInit } from '@angular/core';
+import { AfterViewInit, Component, forwardRef, HostListener, Injector, Input, OnInit, ViewChild } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { AbstractControl, ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
+import { NgSelectComponent } from '@ng-select/ng-select';
 
 const SERVICES = [
   {
@@ -21,7 +22,7 @@ const SERVICES = [
   },
   {
     id: 5,
-    name: 'Другое'
+    name: 'Сантехника'
   }
 ];
 
@@ -37,22 +38,45 @@ const SERVICES = [
     }
   ]
 })
-export class SelectComponent implements OnInit, ControlValueAccessor {
+export class SelectComponent implements OnInit, AfterViewInit, ControlValueAccessor {
   value = null;
   disabled = false;
-
   servicesList$ = new BehaviorSubject(null);
 
+  @ViewChild('ngSelectComponent', { static: false }) ngSelectComponent: NgSelectComponent;
+
+  @Input() placeholder: string;
+  @Input() notFoundText: string;
+
+  ngControl: NgControl;
+  control: FormControl | AbstractControl;
+
   private onChange = (value: any) => {
-  }
+  };
   private onTouched = () => {
+  };
+
+  constructor(private inj: Injector) {
   }
 
-  constructor() {
+  @HostListener('window:resize') resize(): void {
+    if (this.ngSelectComponent.isOpen) {
+      this.ngSelectComponent.close();
+    }
   }
 
   ngOnInit(): void {
     this.servicesList$.next(SERVICES);
+  }
+
+  ngAfterViewInit(): void {
+    this.ngControl = this.inj.get(NgControl);
+    setTimeout(() => {
+      this.control = this.ngControl.control;
+    });
+    setTimeout(() => {
+      console.log(this.control.invalid);
+    }, 3000);
   }
 
   registerOnChange(fn: any): void {
@@ -74,6 +98,10 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
   updateValue(insideValue: number): void {
     this.value = insideValue;
     this.onChange(insideValue);
+    this.onTouched();
+  }
+
+  blur(): void {
     this.onTouched();
   }
 }

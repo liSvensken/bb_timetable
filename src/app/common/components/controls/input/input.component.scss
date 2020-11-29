@@ -7,7 +7,7 @@
 }
 
 .input{
-  padding: 20px 8px 8px 8px;
+  padding: 16px 8px 2px 8px;
   font-size: 16px;
   background-color: transparent;
   border-bottom: 4px dotted $border-color;
@@ -29,16 +29,17 @@
   }
 }
 
-.placeholder {
+.custom-placeholder {
   position: absolute;
   top: 40%;
   left: 8px;
-  color: #000000;
+  color: $input-placeholder;
   transition: top 400ms, left 400ms;
 
   &.mod-top {
     top: -2px;
     left: 0;
-    color: $border-color;
+    color: $secondary-color;
+    font-size: 12px;
   }
 }

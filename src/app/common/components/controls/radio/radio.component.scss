@@ -1,16 +1,31 @@
 @import "colors";
 
+$diameter-input-radio: 20px;
+
 .input-radio-wrapper {
+  cursor: pointer;
   input {
     display: none;
 
     &:checked {
       + .input-radio-content {
-        &:after {
-          background-color: $main-color-opacity-3;
+        &:before {
+          position: absolute;
+          content: '';
+          width: calc(#{$diameter-input-radio} / 2);
+          height: calc(#{$diameter-input-radio} / 2);
+          top: calc(#{$diameter-input-radio} / 4);
+          left: calc(#{$diameter-input-radio} / 4);
+          background-color: $border-color;
+          border-radius: 100px;
+          z-index: 2;
         }
       }
     }
+  }
+
+  &:hover {
+    text-decoration: underline;
   }
 }
 
@@ -24,10 +39,11 @@
     top: 50%;
     transform: translateY(-50%);
     left: 0;
-    width: 20px;
-    height: 20px;
+    width: $diameter-input-radio;
+    height: $diameter-input-radio;
     border-radius: 100px;
     background-color: #ffffff;
     border: 2px solid $border-color;
+    z-index: 1;
   }
 }

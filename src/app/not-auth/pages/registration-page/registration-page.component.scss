@@ -1,10 +1,32 @@
+@import "colors";
+
+.subtitle {
+  text-align: center;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #72695a;
+  padding-bottom: 10px;
+}
+
 .form-wrapper {
   display: flex;
   flex-direction: column;
 }
 
-.radio-group-wrapper, .select-wrapper, .inputs-wrapper, .bnt-wrapper {
+.select-wrapper {
+  margin-bottom: 8px;
+}
+
+.radio-group-wrapper, .inputs-wrapper, .bnt-wrapper {
   margin-bottom: 20px;
+}
+
+.radio-group-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.fields-wrapper {
+
 }
 
 app-radio {
@@ -22,6 +44,14 @@ app-input {
 }
 
 .link-wrapper {
+  border-top: 1px solid $border-color;
   display: flex;
   justify-content: center;
+  padding-top: 10px;
+}
+
+.caption {
+  font-weight: bold;
+  text-decoration: underline;
+  margin-bottom: 16px;
 }

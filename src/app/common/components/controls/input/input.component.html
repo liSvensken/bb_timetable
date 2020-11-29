@@ -1,9 +1,34 @@
-<label class="input-wrapper">
-  <input class="input" type="text" [placeholder]="hint"
-         [ngModel]="value"
-         (ngModelChange)="updateValue($event)"
-         [disabled]="disabled"
-         (focus)="placeholderOffset()"
-         (blur)="placeholderOffset()">
-  <span class="placeholder" [class.mod-top]="(placeholderTop$ | async)">{{ placeholder }}</span>
-</label>
+<div class="content-wrapper">
+  <label class="input-wrapper">
+    <input class="input"
+           [type]="type"
+           [placeholder]="example"
+           [ngModel]="value"
+           (ngModelChange)="updateValue($event)"
+           [disabled]="disabled"
+           (focus)="focus()"
+           (blur)="blur()">
+    <span class="custom-placeholder"
+          [class.mod-top]="(placeholderTop$ | async) || control && control.value">{{ placeholder }}</span>
+  </label>
+
+  <div *ngIf="control" class="gl-error-control" [class.mod-show]="control.invalid && control.touched">
+    <ng-container *ngIf="control.hasError('required')">
+      Обязательно для заполнения!
+    </ng-container>
+
+    <ng-container *ngIf="control.hasError('minlength')">
+      Минимум 3 символа!
+    </ng-container>
+
+    <ng-container *ngIf="control.hasError('notDuplicatePasswords')">
+      Несовпадяющие пароли!
+    </ng-container>
+
+    <ng-container *ngIf="!(control.hasError('required'))  &&
+                         !(control.hasError('minlength')) &&
+                         !(control.hasError('notDuplicatePasswords'))">
+      Некорректное значение!
+    </ng-container>
+  </div>
+</div>

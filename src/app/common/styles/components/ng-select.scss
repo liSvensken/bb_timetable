@@ -5,6 +5,17 @@
   border: 1px solid $border-color;
 }
 
+// заголовок select-a
+.ng-select .ng-select-container .ng-value-container .ng-placeholder {
+  color: $input-placeholder;
+}
+
+// padding заголовка select-a
+.ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-placeholder {
+  padding-top: 3px;
+  padding-bottom: 0;
+}
+
 // заголовок select-a при потере фокуса
 .ng-select.ng-select-focused:not(.ng-select-opened) > .ng-select-container {
   border-color: $border-color;

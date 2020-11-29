@@ -1,6 +1,7 @@
-import { Component, forwardRef, Input, OnInit } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { AfterViewInit, Component, forwardRef, Inject, Injector, Input, OnInit } from '@angular/core';
+import { AbstractControl, ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
+import { log } from 'util';
 
 @Component({
   selector: 'app-input',
@@ -14,20 +15,33 @@ import { BehaviorSubject } from 'rxjs';
     }
   ]
 })
-export class InputComponent implements OnInit, ControlValueAccessor {
+export class InputComponent implements OnInit, AfterViewInit, ControlValueAccessor {
   value = null;
   disabled = false;
   placeholderTop$ = new BehaviorSubject(false);
+  ngControl: NgControl;
+  control: FormControl | AbstractControl;
+
+  @Input() type: string;
   @Input() placeholder: string;
-  @Input() hint = '';
+  @Input() example = '';
 
-  private onChange = (value: any) => {};
-  private onTouched = () => {};
+  private onChange = (value: any) => {
+  }
+  private onTouched = () => {
+  }
 
-  constructor() {
+  constructor(private inj: Injector) {
   }
 
   ngOnInit(): void {
+  }
+
+  ngAfterViewInit(): void {
+    this.ngControl = this.inj.get(NgControl);
+    setTimeout(() => {
+      this.control = this.ngControl.control;
+    });
   }
 
   registerOnChange(fn: any): void {
@@ -49,10 +63,14 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   updateValue(insideValue: number): void {
     this.value = insideValue;
     this.onChange(insideValue);
-    this.onTouched();
   }
 
-  placeholderOffset(): void {
-    this.placeholderTop$.next(!this.placeholderTop$.value);
+  focus(): void {
+    this.placeholderTop$.next(true);
+  }
+
+  blur(): void {
+    this.onTouched();
+    this.placeholderTop$.next(false);
   }
 }

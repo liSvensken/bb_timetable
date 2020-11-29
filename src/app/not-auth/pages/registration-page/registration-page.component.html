@@ -1,28 +1,30 @@
-<div class="gl-window-inlet-wrapper">
-  <div class="gl-window-inlet-background">
+<div class="gl-page gl-page-content">
+  <div class="gl-window-inlet-wrapper">
     <div class="gl-window-inlet">
       <div class="gl-stripes-block"></div>
       <div class="gl-window-inlet-content">
 
+        <h3 class="subtitle">Регистрация</h3>
+        
         <div class="radio-group-wrapper">
           <app-radio value="master" name="status" [formControl]="status" content="Мастер"></app-radio>
           <app-radio value="client" name="status" [formControl]="status" content="Клиент"></app-radio>
         </div>
 
-        <ng-container *ngIf="true">
-          <form class="form-wrapper" [formGroup]="form">
+        <ng-container *ngIf="status.value"><!--status.value-->
+          <form class="form-wrapper" [formGroup]="form" (submit)="submit()">
 
-            <ng-container *ngIf="true">
+            <ng-container *ngIf="status.value === 'master'"> <!--status.value === 'master'-->
               <div class="select-wrapper">
-                <app-select formControlName="service"></app-select>
+                <app-select formControlName="service" placeholder="Выберете сервис услуг" notFoundText="Услуга не найдена"></app-select>
               </div>
             </ng-container>
 
             <div class="inputs-wrapper">
-              <app-input formControlName="name" placeholder="Имя" hint="Ex. natasha_romanov"></app-input>
-              <app-input formControlName="email" placeholder="email" hint="Ex. pochta@gmail.ru"></app-input>
-              <app-input formControlName="password" placeholder="Пароль"></app-input>
-              <app-input formControlName="passwordDouble" placeholder="Повторите пароль"></app-input>
+              <app-input formControlName="name" type="text" placeholder="Имя" example="Ex. natasha_romanov"></app-input>
+              <app-input formControlName="email" type="text" placeholder="email" example="Ex. pochta@gmail.ru"></app-input>
+              <app-input formControlName="password" type="password" placeholder="Пароль"></app-input>
+              <app-input formControlName="passwordDouble" type="password" placeholder="Повторите пароль"></app-input>
             </div>
 
             <div class="bnt-wrapper">

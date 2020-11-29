@@ -1,17 +1,8 @@
-import { AbstractControl, FormArray, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { AbstractControl, ValidatorFn } from '@angular/forms';
 
-
-export function duplicatePassword(controlFirst: AbstractControl): ValidatorFn {
-  return (control: AbstractControl): ValidationErrors | null => {
-    const valid = control.value === controlFirst.value || !controlFirst.value;
-    return valid ? null : { differentPassword: true };
+export function duplicatePasswords(controlFirst: AbstractControl): ValidatorFn {
+  return (control: AbstractControl): { [key: string]: boolean } | null => {
+    const valid = !controlFirst.value || control.value === controlFirst.value;
+    return valid ? null : { notDuplicatePasswords: true };
   };
 }
-
-export function someTrue(): ValidatorFn {
-  return (formArray: FormArray): ValidationErrors | null => {
-    const valid = formArray.controls.some(control => control.value);
-    return valid ? null : { someTrue: true };
-  };
-}
-

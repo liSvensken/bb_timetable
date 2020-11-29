@@ -13,8 +13,6 @@
 }
 
 .gl-layout-content {
-  //background-image: url("../../../assets/image/background-main.jpg");
-  //background-repeat: repeat;
   background-color: #c8b0a1;
   flex: 1 1 100%;
 }
@@ -23,10 +21,20 @@
   flex: 0 0 auto;
 }
 
+.gl-page {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
 .gl-page-content {
   padding-left: 100px;
   padding-right: 100px;
-  margin: 0 auto;
+}
+
+h3 {
+  font-size: 18px;
+  font-weight: 500;
 }
 
 .gl-header-wrapper {
@@ -40,17 +48,15 @@
 }
 
 .gl-header-item-wrapper {
+  font-size: 18px;
+  font-weight: bold;
+
   & + & {
     margin-left: 30px;
   }
 
-  .gl-sections-caption {
-    font-size: 18px;
-    font-weight: bold;
-
-    &:hover {
-      text-decoration: underline;
-    }
+  &:hover {
+    text-decoration: underline;
   }
 
   .gl-link-active {
@@ -59,7 +65,7 @@
   }
 }
 
-.gl-link, .gl-link > span {
+.gl-link, .gl-link {
   padding: 6px;
   color: $secondary-color !important;
   position: relative;
@@ -80,17 +86,25 @@
   }
 }
 
-.gl-window-inlet-wrapper {
-  display: flex;
-  justify-content: center;
-  margin-top: 50px;
+.gl-error-control {
+  height: 0;
+  margin-top: 6px;
+  color: $third-color;
+  overflow: hidden;
+  transition: height 400ms;
+  font-size: 12px;
+
+  &.mod-show {
+    height: 20px;
+  }
 }
 
-.gl-window-inlet-background {
+.gl-window-inlet-wrapper {
   width: 400px;
   padding: 20px;
   background: $main-background-color;
   border: 1px solid $border-color;
+  box-shadow: 0 0 40px 0 $border-color;
 }
 
 .gl-window-inlet {
@@ -100,7 +114,7 @@
 
 .gl-stripes-block {
   position: relative;
-  padding: 15px;
+  padding: 16px;
   background: repeating-linear-gradient(-45deg, #E4E3DF, #E4E3DF 5px, $border-color 6px, $border-color 8px);
   border-bottom: 2px solid $border-color;
 
@@ -119,5 +133,6 @@
 }
 
 .gl-window-inlet-content {
-  padding: 20px;
+  padding: 20px 20px 10px 20px;
 }
+
