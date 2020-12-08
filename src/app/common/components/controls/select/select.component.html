@@ -8,7 +8,7 @@
              [multiple]="true"
              [closeOnSelect]="false"
              (blur)="blur()">
-    <ng-option *ngFor="let item of (servicesList$ | async)" [value]="item.id">{{item.name}}</ng-option>
+    <ng-option *ngFor="let item of (servicesList$ | async)" [value]="item.id">{{item.serviceName}}</ng-option>
   </ng-select>
 
   <div *ngIf="control" class="gl-error-control" [class.mod-show]="control.invalid && control.touched">

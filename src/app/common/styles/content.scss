@@ -95,7 +95,7 @@ h3 {
   font-size: 12px;
 
   &.mod-show {
-    height: 20px;
+    height: 14px;
   }
 }
 
@@ -132,7 +132,31 @@ h3 {
   }
 }
 
+.gl-window-inlet-subtitle {
+  text-align: center;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #72695a;
+  padding-bottom: 10px;
+}
+
 .gl-window-inlet-content {
   padding: 20px 20px 10px 20px;
+}
+
+.gl-window-inlet-radios-wrapper, .gl-window-inlet-inputs-wrapper, .gl-window-inlet-bnt-wrapper {
+  margin-bottom: 20px;
+}
+
+.gl-window-inlet-link-wrapper {
+  border-top: 1px solid $border-color;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10px;
+  font-size: 14px;
+}
+
+.gl-substr {
+  font-size: 12px;
 }
 

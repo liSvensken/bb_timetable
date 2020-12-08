@@ -1,30 +1,9 @@
-import { AfterViewInit, Component, forwardRef, HostListener, Injector, Input, OnInit, ViewChild } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { AfterViewInit, Component, forwardRef, HostListener, Injector, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { AbstractControl, ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
 import { NgSelectComponent } from '@ng-select/ng-select';
-
-const SERVICES = [
-  {
-    id: 1,
-    name: 'Парикмахерские услуги'
-  },
-  {
-    id: 2,
-    name: 'Услуги визажиста'
-  },
-  {
-    id: 3,
-    name: 'Массаж'
-  },
-  {
-    id: 4,
-    name: 'Тату'
-  },
-  {
-    id: 5,
-    name: 'Сантехника'
-  }
-];
+import { RegistrationApiService } from '@common/services/api/services-api.service';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-select',
@@ -38,7 +17,8 @@ const SERVICES = [
     }
   ]
 })
-export class SelectComponent implements OnInit, AfterViewInit, ControlValueAccessor {
+export class SelectComponent implements OnInit, AfterViewInit, OnDestroy, ControlValueAccessor {
+  componentDestroyed$ = new Subject();
   value = null;
   disabled = false;
   servicesList$ = new BehaviorSubject(null);
@@ -52,11 +32,22 @@ export class SelectComponent implements OnInit, AfterViewInit, ControlValueAcces
   control: FormControl | AbstractControl;
 
   private onChange = (value: any) => {
-  };
+  }
   private onTouched = () => {
-  };
+  }
 
-  constructor(private inj: Injector) {
+  constructor(private inj: Injector,
+              private registrationApiService: RegistrationApiService) {
+
+    this.registrationApiService.getServicesList()
+        .pipe(takeUntil(this.componentDestroyed$))
+        .subscribe(
+            value => {
+              console.log(value);
+              this.servicesList$.next(value.result);
+            },
+            error => console.log(error)
+        );
   }
 
   @HostListener('window:resize') resize(): void {
@@ -66,7 +57,6 @@ export class SelectComponent implements OnInit, AfterViewInit, ControlValueAcces
   }
 
   ngOnInit(): void {
-    this.servicesList$.next(SERVICES);
   }
 
   ngAfterViewInit(): void {
@@ -74,9 +64,11 @@ export class SelectComponent implements OnInit, AfterViewInit, ControlValueAcces
     setTimeout(() => {
       this.control = this.ngControl.control;
     });
-    setTimeout(() => {
-      console.log(this.control.invalid);
-    }, 3000);
+  }
+
+  ngOnDestroy(): void {
+    this.componentDestroyed$.next();
+    this.componentDestroyed$.complete();
   }
 
   registerOnChange(fn: any): void {
