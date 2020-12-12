@@ -1,0 +1,40 @@
+@import "content";
+@import "colors";
+
+.header-wrapper {
+  height: $header-height;
+  background-color: $main-background-color;
+}
+
+.header-content {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.block-wrapper {
+  display: flex;
+  height: 100%;
+}
+
+.link-wrapper {
+  font-size: 18px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 15px;
+  cursor: pointer;
+  border-bottom: 0 solid black;
+
+  &:hover {
+    color: #dddddd;
+    transition: color 200ms, border-bottom 500ms;
+    border-bottom: 1px solid black;
+  }
+}
+
+.link-active {
+  //text-decoration: underline;
+}

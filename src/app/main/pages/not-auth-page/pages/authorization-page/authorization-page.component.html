@@ -1,0 +1,27 @@
+<div class="gl-page gl-page-content">
+  <div class="gl-window-inlet-wrapper">
+    <div class="gl-window-inlet">
+      <div class="gl-stripes-block"></div>
+      <div class="gl-window-inlet-content">
+
+        <h3 class="gl-window-inlet-subtitle">Вход в TimeTable</h3>
+
+        <form class="form-wrapper" [formGroup]="form" (submit)="submit()">
+          <div class="gl-window-inlet-inputs-wrapper">
+            <app-input formControlName="login" type="text" placeholder="Имя или email" example="Ex. natasha_romanov"></app-input>
+            <app-input formControlName="password" type="password" placeholder="Пароль"></app-input>
+          </div>
+
+          <div class="gl-window-inlet-bnt-wrapper">
+            <app-main-button content="Войти"></app-main-button>
+          </div>
+        </form>
+
+        <div class="gl-window-inlet-link-wrapper">
+          <div class="gl-substr">Нет учетной записи?</div>
+          <a class="gl-link" [routerLink]="['/not-auth/registration']">Зарегистрироваться</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

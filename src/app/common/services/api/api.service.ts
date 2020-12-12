@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { MyCookiesService } from '@common/services/my-cookies.service';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { MyCookiesService } from '@common/services/my-cookies.service';
 
 @Injectable({ providedIn: 'root' })
 export class ApiService {

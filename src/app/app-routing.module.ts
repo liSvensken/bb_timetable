@@ -3,9 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'not-auth',
-    loadChildren: () => import('./not-auth/not-auth.module')
-      .then(m => m.NotAuthModule)
+    path: '',
+    loadChildren: () => import('./main/main.module')
+      .then(m => m.MainModule)
   }
 ];
 

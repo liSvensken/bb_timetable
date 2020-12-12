@@ -9,11 +9,10 @@
 
 .gl-layout-header {
   flex: 0 0 auto;
-  background-color: rgb(234 234 234);
 }
 
 .gl-layout-content {
-  background-color: #c8b0a1;
+  background-color: $main-background-color;
   flex: 1 1 100%;
 }
 
@@ -35,34 +34,6 @@
 h3 {
   font-size: 18px;
   font-weight: 500;
-}
-
-.gl-header-wrapper {
-  height: $header-height;
-}
-
-.gl-header-content {
-  height: 100%;
-  display: flex;
-  align-items: center;
-}
-
-.gl-header-item-wrapper {
-  font-size: 18px;
-  font-weight: bold;
-
-  & + & {
-    margin-left: 30px;
-  }
-
-  &:hover {
-    text-decoration: underline;
-  }
-
-  .gl-link-active {
-    text-decoration: underline;
-    color: $main-color;
-  }
 }
 
 .gl-link, .gl-link {
@@ -102,7 +73,7 @@ h3 {
 .gl-window-inlet-wrapper {
   width: 400px;
   padding: 20px;
-  background: $main-background-color;
+  background: $background-window;
   border: 1px solid $border-color;
   box-shadow: 0 0 40px 0 $border-color;
 }

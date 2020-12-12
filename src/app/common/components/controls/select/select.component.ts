@@ -2,8 +2,6 @@ import { AfterViewInit, Component, forwardRef, HostListener, Injector, Input, On
 import { BehaviorSubject, Subject } from 'rxjs';
 import { AbstractControl, ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
 import { NgSelectComponent } from '@ng-select/ng-select';
-import { RegistrationApiService } from '@common/services/api/services-api.service';
-import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-select',
@@ -36,18 +34,17 @@ export class SelectComponent implements OnInit, AfterViewInit, OnDestroy, Contro
   private onTouched = () => {
   }
 
-  constructor(private inj: Injector,
-              private registrationApiService: RegistrationApiService) {
-
-    this.registrationApiService.getServicesList()
-        .pipe(takeUntil(this.componentDestroyed$))
-        .subscribe(
-            value => {
-              console.log(value);
-              this.servicesList$.next(value.result);
-            },
-            error => console.log(error)
-        );
+  constructor(private inj: Injector) {
+    //
+    // this.registrationApiService.getServicesList()
+    //     .pipe(takeUntil(this.componentDestroyed$))
+    //     .subscribe(
+    //         value => {
+    //           console.log(value);
+    //           this.servicesList$.next(value.result);
+    //         },
+    //         error => console.log(error)
+    //     );
   }
 
   @HostListener('window:resize') resize(): void {

@@ -1,0 +1,28 @@
+<div class="header-wrapper">
+  <div class="header-content gl-page-content">
+
+    <div class="block-wrapper">
+      <div class="link-wrapper">
+        <a [routerLink]="['/not-auth/registration']"
+           [routerLinkActive]="['link-active']">
+          Заголовок
+        </a>
+      </div>
+      <div class="link-wrapper">
+        <a [routerLink]="['/not-auth/main']"
+           [routerLinkActive]="['link-active']">
+          На главную
+        </a>
+      </div>
+    </div>
+
+    <div class="block-wrapper">
+      <div class="link-wrapper">
+        <a (click)="logOut()"
+           [routerLink]="['/not-auth/authorization']">
+          Выход
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
