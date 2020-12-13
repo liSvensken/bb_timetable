@@ -4,13 +4,13 @@ import { CityModel } from '@common/interfaces/models/city.model';
 import { GenderEnum } from '@common/enums/gender.enum';
 
 
-export interface UserMasterModelInterface {
-  id: number;
-  role: RoleEnum;
-  nickname: string;
-  email: string;
-  services: ServiceModel[];
-  cities: CityModel[];
+export interface UserModelInterface {
+  id?: number;
+  role?: RoleEnum;
+  nickname?: string;
+  email?: string;
+  services?: ServiceModel[];
+  cities?: CityModel[];
   lastsName?: string;
   firsName?: string;
   phone?: string;

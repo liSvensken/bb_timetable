@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,6 +8,11 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CookieModule } from '@gorniv/ngx-universal';
+import { AppInitService } from './app.init.service';
+
+export function appInit(appInitService: AppInitService): () => Promise<any> {
+  return () => appInitService.initApp();
+}
 
 @NgModule({
   declarations: [
@@ -22,7 +27,15 @@ import { CookieModule } from '@gorniv/ngx-universal';
     NgSelectModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    AppInitService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: appInit,
+      multi: true,
+      deps: [AppInitService]
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

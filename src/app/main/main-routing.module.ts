@@ -10,23 +10,14 @@ const routes: Routes = [
     component: MainLayoutComponent,
     children: [
       {
+        path: 'auth',
+        loadChildren: () => import('./pages/main-page/main-page.module')
+          .then((m => m.MainPageModule))
+      },
+      {
         path: 'not-auth',
         loadChildren: () => import('./pages/not-auth-page/not-auth-page.module')
           .then((m => m.NotAuthPageModule))
-      },
-      {
-        path: 'master',
-        loadChildren: () => import('./pages/master-page/master-page.module')
-          .then((m => m.MasterPageModule))
-      },
-      {
-        path: 'client',
-        loadChildren: () => import('./pages/client-page/client-page.module')
-          .then((m => m.ClientPageModule))
-      },
-      {
-        path: '',
-        redirectTo: 'not-auth'
       }
     ]
   }

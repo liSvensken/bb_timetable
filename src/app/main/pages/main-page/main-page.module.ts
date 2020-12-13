@@ -6,7 +6,14 @@ import { MainPageComponent } from './main-page.component';
 const routes: Routes = [
   {
     path: '',
-    component: MainPageComponent
+    component: MainPageComponent,
+    children: [
+      {
+        path: 'search',
+        loadChildren: () => import('./sections/search/search.module')
+          .then(m => m.SearchModule)
+      }
+    ]
   }
 ];
 

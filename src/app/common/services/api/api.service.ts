@@ -13,7 +13,7 @@ export class ApiService {
     return this.http.post<any>(url, body, this.setOptions());
   }
 
-  get(url, params): Observable<any> {
+  get(url, params?): Observable<any> {
     return this.http.get<any>(url, this.setOptions(params));
   }
 
@@ -28,7 +28,7 @@ export class ApiService {
     } = {};
     option.headers = new HttpHeaders().set('Accept', '*/*');
 
-    const token = this.myCookiesService.get('token');
+    const token = this.myCookiesService.getToken();
     if (token) {
       option.headers = option.headers.set('Authorization', `Bearer ${ token }`);
     }

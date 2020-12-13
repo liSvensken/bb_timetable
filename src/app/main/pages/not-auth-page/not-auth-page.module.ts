@@ -10,18 +10,13 @@ const routes: Routes = [
     children: [
       {
         path: 'authorization',
-        loadChildren: () => import('./pages/authorization-page/authorization-page.module')
-          .then(m => m.AuthorizationPageModule)
+        loadChildren: () => import('./sections/authorization/authorization.module')
+          .then(m => m.AuthorizationModule)
       },
       {
         path: 'registration',
-        loadChildren: () => import('./pages/registration-page/registration-page.module')
-          .then(m => m.RegistrationPageModule)
-      },
-      {
-        path: 'main',
-        loadChildren: () => import('./pages/main-page/main-page.module')
-          .then(m => m.MainPageModule)
+        loadChildren: () => import('./sections/registration/registration.module')
+          .then(m => m.RegistrationModule)
       },
       {
         path: '',

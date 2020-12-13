@@ -3,17 +3,17 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { first, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
-import { RegApiService } from '@common/services/api/reg-api.service';
 import { MyCookiesService } from '@common/services/my-cookies.service';
 import { duplicatePasswords } from '@common/utils/validations.utils';
-import { RoleEnum } from '@common/enums/role.enum';
+import { AuthApiService } from '@common/services/api/auth-api.service';
+import { SessionService } from '@common/services/session.service';
 
 @Component({
   selector: 'app-registration-page',
-  templateUrl: './registration-page.component.html',
-  styleUrls: ['./registration-page.component.scss']
+  templateUrl: './registration.component.html',
+  styleUrls: ['./registration.component.scss']
 })
-export class RegistrationPageComponent implements OnInit, OnDestroy {
+export class RegistrationComponent implements OnInit, OnDestroy {
   form = this.fb.group({
     role: ['', [Validators.required]],
     nickname: ['', [Validators.required, Validators.minLength(3)]],
@@ -25,9 +25,10 @@ export class RegistrationPageComponent implements OnInit, OnDestroy {
   componentDestroyed$ = new Subject();
 
   constructor(private fb: FormBuilder,
-              private usersApiService: RegApiService,
+              private authApiService: AuthApiService,
               private router: Router,
-              private myCookiesService: MyCookiesService) {
+              private myCookiesService: MyCookiesService,
+              private sessionService: SessionService) {
 
     this.form.controls.passwordDouble.setValidators([duplicatePasswords(this.form.controls.password)]);
 
@@ -53,30 +54,17 @@ export class RegistrationPageComponent implements OnInit, OnDestroy {
         email: this.form.controls.email.value,
         password: this.form.controls.password.value
       };
-      this.usersApiService.registrationUser(model)
+      this.authApiService.registration(model)
         .subscribe(
           v => {
             if (v.token) {
-              this.myCookiesService.put('token', v.token);
-
-              switch (true) {
-                case this.form.controls.role.value === RoleEnum.MASTER:
-                  this.router.navigate(['/master']);
-                  break;
-
-                case this.form.controls.role.value === RoleEnum.CLIENT:
-                  this.router.navigate(['/client']);
-                  break;
-              }
+              this.myCookiesService.setToken(v.token);
+              this.sessionService.setCurrentUser(v.result);
+              this.router.navigate(['auth/search']);
             }
           },
           error =>
             console.log(error));
     }
-  }
-
-  testBtn(): void {
-    // this.usersApiService.getUser()
-    //   .subscribe(e => console.log(e.result));
   }
 }

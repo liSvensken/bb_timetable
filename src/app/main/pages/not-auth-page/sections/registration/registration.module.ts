@@ -1,31 +1,34 @@
 import { NgModule } from '@angular/core';
-import { AuthorizationPageComponent } from './authorization-page.component';
 import { CommonModule } from '@angular/common';
+import { RegistrationComponent } from './registration.component';
 import { RouterModule, Routes } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
-import { RadioModule } from '@common/components/controls/radio/radio.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SelectModule } from '@common/components/controls/select/select.module';
 import { InputModule } from '@common/components/controls/input/input.module';
 import { MainButtonModule } from '@common/components/main-button/main-button.module';
+import { RadioModule } from '@common/components/controls/radio/radio.module';
 
 const routes: Routes = [
   {
     path: '',
-    component: AuthorizationPageComponent,
+    component: RegistrationComponent,
   }
 ];
 
 @NgModule({
   declarations: [
-    AuthorizationPageComponent
+    RegistrationComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    RadioModule,
     ReactiveFormsModule,
+    FormsModule,
+    SelectModule,
     InputModule,
-    MainButtonModule
+    MainButtonModule,
+    RadioModule
   ]
 })
-export class AuthorizationPageModule {
+export class RegistrationModule {
 }
