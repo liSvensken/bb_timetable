@@ -1,14 +1,21 @@
+<!--
+[notFoundText] - текст при ненайденном выборе
+[clearableBoll] - разрешить очистить выбраное значение
+[multipleBoll] - множественный выбор
+[closeOnSelectBoll] - закрыть селект послепервого выбора
+-->
+
 <div class="content-wrapper">
   <ng-select #ngSelectComponent
              [ngModel]="value"
              (ngModelChange)="updateValue($event)"
              [placeholder]="placeholder"
-             notFoundText="{{ notFoundText }}"
-             [clearable]="false"
-             [multiple]="true"
-             [closeOnSelect]="false"
+             [notFoundText]="notFoundText"
+             [clearable]="clearableBoll"
+             [multiple]="multipleBoll"
+             [closeOnSelect]="closeOnSelectBoll"
              (blur)="blur()">
-    <ng-option *ngFor="let item of (servicesList$ | async)" [value]="item.id">{{item.serviceName}}</ng-option>
+    <ng-option *ngFor="let item of (itemsList$ | async)" [value]="item.id">{{item.name}}</ng-option>
   </ng-select>
 
   <div *ngIf="control" class="gl-error-control" [class.mod-show]="control.invalid && control.touched">

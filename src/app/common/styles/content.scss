@@ -20,13 +20,9 @@
   flex: 0 0 auto;
 }
 
-.gl-page {
+.gl-page-content {
   display: flex;
   justify-content: center;
-  margin-top: 50px;
-}
-
-.gl-page-content {
   padding-left: 100px;
   padding-right: 100px;
 }
@@ -36,15 +32,15 @@ h3 {
   font-weight: 500;
 }
 
-.gl-link, .gl-link {
-  padding: 6px;
+.gl-link, {
+  padding: 6px 0;
   color: $secondary-color !important;
   position: relative;
 
   &:before {
     content: '';
     position: absolute;
-    transition: transform .5s ease;
+    transition: transform 300ms ease;
     left: 0;
     bottom: 0;
     width: 100%;
@@ -52,8 +48,13 @@ h3 {
     background: $secondary-color;
     transform:  scaleX(0);
   }
-  &:hover:before {
-    transform:  scaleX(1);
+  &:hover {
+    color: $third-color !important;
+
+    &:before {
+      background: $third-color;
+      transform:  scaleX(1);
+    }
   }
 }
 
@@ -70,22 +71,35 @@ h3 {
   }
 }
 
-.gl-window-inlet-wrapper {
-  width: 400px;
-  padding: 20px;
+.gl-window-wrapper {
+  padding: 10px;
   background: $background-window;
   border: 1px solid $border-color;
   box-shadow: 0 0 35px 0 #b1b1b1;
+  border-radius: 6px;
+
+  &.mod-small {
+    width: 400px;
+    padding: 20px;
+  }
+
+  &.mod-medium {
+    min-width: 600px;
+  }
+
+  &.mod-big {
+    width: 800px;
+  }
 }
 
-.gl-window-inlet {
+.gl-window {
   border: 2px solid $border-color;
   width: 100%;
 }
 
 .gl-stripes-block {
   position: relative;
-  padding: 16px;
+  height: 34px;
   background: repeating-linear-gradient(-45deg, #E4E3DF, #E4E3DF 5px, $border-color 6px, $border-color 8px);
   border-bottom: 2px solid $border-color;
 
@@ -93,32 +107,41 @@ h3 {
     content: "";
     position: absolute;
     left: 50%;
-    top: 8px;
-    margin-left: -6px;
+    top: 50%;
+    transform: translate(-50%, -50%);
     width: 14px;
     height: 14px;
     border-radius: 50%;
     background: #fffffe;
-    box-shadow: 0 0 0 1px #090606, 0 0 0 12px #9c8778;
+    box-shadow: 0 0 0 1px #342626, 0 0 0 12px #9c8778;
   }
 }
 
-.gl-window-inlet-subtitle {
+.gl-auth-subtitle {
   text-align: center;
   margin-bottom: 20px;
   border-bottom: 1px solid #72695a;
   padding-bottom: 10px;
 }
 
-.gl-window-inlet-content {
+.gl-window-content {
   padding: 20px 20px 10px 20px;
+
+  &.mod-medium {
+    padding-top: 10px;
+  }
 }
 
-.gl-window-inlet-radios-wrapper, .gl-window-inlet-inputs-wrapper, .gl-window-inlet-bnt-wrapper {
+.gl-auth-radios-wrapper, .gl-auth-inputs-wrapper, .gl-auth-bnt-wrapper {
   margin-bottom: 20px;
 }
 
-.gl-window-inlet-link-wrapper {
+.gl-auth-bnt-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.gl-auth-link-wrapper {
   border-top: 1px solid $border-color;
   display: flex;
   flex-direction: column;

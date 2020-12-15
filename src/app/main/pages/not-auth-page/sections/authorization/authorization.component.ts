@@ -12,8 +12,8 @@ import { SessionService } from '@common/services/session.service';
 })
 export class AuthorizationComponent implements OnInit {
   form = this.fb.group({
-    login: ['', [Validators.required, Validators.minLength(3)]],
-    password: ['', [Validators.required]]
+    login: ['qwer', [Validators.required, Validators.minLength(3)]],
+    password: ['123', [Validators.required]]
   });
 
   constructor(private fb: FormBuilder,
@@ -41,7 +41,7 @@ export class AuthorizationComponent implements OnInit {
             if (v.token) {
               this.myCookiesService.put('token', v.token);
               this.sessionService.setCurrentUser(v.result);
-              this.router.navigate(['auth/search']);
+              this.router.navigate(['/search']);
             }
           },
           error =>

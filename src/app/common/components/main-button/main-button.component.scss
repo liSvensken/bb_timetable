@@ -1,10 +1,5 @@
 @import "colors";
 
-.btn-wrapper {
-  display: flex;
-  justify-content: center;
-}
-
 .btn {
   background: transparent;
   position: relative;
@@ -37,14 +32,24 @@
     transform: translate(4px, 3px);
   }
 
-  .content {
-    z-index: 2;
-    position: relative;
-  }
-
   &:hover {
     &:before {
       transform: translate(-2px, -2px);
     }
   }
+
+  &.mod-small {
+    padding: 6px 10px;
+    min-width: 70px;
+
+    &:before {
+      top: 2px;
+      left: 2px;
+    }
+  }
+}
+
+.content {
+  z-index: 2;
+  position: relative;
 }

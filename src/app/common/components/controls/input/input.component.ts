@@ -1,7 +1,6 @@
-import { AfterViewInit, Component, forwardRef, Inject, Injector, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, forwardRef, Injector, Input, OnInit } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
-import { log } from 'util';
 
 @Component({
   selector: 'app-input',

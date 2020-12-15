@@ -60,7 +60,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
             if (v.token) {
               this.myCookiesService.setToken(v.token);
               this.sessionService.setCurrentUser(v.result);
-              this.router.navigate(['auth/search']);
+              this.router.navigate(['/search']);
             }
           },
           error =>

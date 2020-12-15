@@ -22,6 +22,7 @@
     "@angular/router": "~10.1.6",
     "@gorniv/ngx-universal": "^2.2.2",
     "@ng-select/ng-select": "^5.0.9",
+    "ngx-infinite-scroll": "^10.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

@@ -5,10 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CookieModule } from '@gorniv/ngx-universal';
 import { AppInitService } from './app.init.service';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 export function appInit(appInitService: AppInitService): () => Promise<any> {
   return () => appInitService.initApp();
@@ -25,7 +26,9 @@ export function appInit(appInitService: AppInitService): () => Promise<any> {
     CookieModule.forRoot(),
     BrowserAnimationsModule,
     NgSelectModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    InfiniteScrollModule
   ],
   providers: [
     AppInitService,

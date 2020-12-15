@@ -1,11 +1,11 @@
-import { NgModule } from '@angular/core';
+import { forwardRef, NgModule } from '@angular/core';
 import { AuthorizationComponent } from './authorization.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
 import { RadioModule } from '@common/components/controls/radio/radio.module';
 import { InputModule } from '@common/components/controls/input/input.module';
 import { MainButtonModule } from '@common/components/main-button/main-button.module';
+import { FormGroup, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -22,9 +22,9 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     RadioModule,
-    ReactiveFormsModule,
     InputModule,
-    MainButtonModule
+    MainButtonModule,
+    ReactiveFormsModule
   ]
 })
 export class AuthorizationModule {

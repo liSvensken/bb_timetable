@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
-
-// todo +Guards
+import { IsAuthGuard } from '@common/guards/is-auth.guard';
+import { IsNotAuthGuard } from '@common/guards/is-not-auth.guard';
 
 const routes: Routes = [
   {
@@ -10,14 +10,16 @@ const routes: Routes = [
     component: MainLayoutComponent,
     children: [
       {
-        path: 'auth',
+        path: '',
         loadChildren: () => import('./pages/main-page/main-page.module')
-          .then((m => m.MainPageModule))
+          .then((m => m.MainPageModule)),
+        canActivate: [IsAuthGuard]
       },
       {
         path: 'not-auth',
         loadChildren: () => import('./pages/not-auth-page/not-auth-page.module')
-          .then((m => m.NotAuthPageModule))
+          .then((m => m.NotAuthPageModule)),
+        canActivate: [IsNotAuthGuard]
       }
     ]
   }
@@ -25,7 +27,11 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [
+    IsAuthGuard,
+    IsNotAuthGuard
+  ]
 })
 export class MainRoutingModule {
 }

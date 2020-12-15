@@ -29,12 +29,12 @@
 
   &:hover {
     color: $secondary-color;
-    transition: color 200ms, border-bottom-color 300ms;
+    transition: color 300ms, border-bottom-color 700ms;
     border-bottom-color: $secondary-color;
   }
 }
 
 .link-active {
   color: $secondary-color;
-  border-bottom-color: $secondary-color;
+  border-bottom: 1px solid $secondary-color;
 }

@@ -22,12 +22,11 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    ReactiveFormsModule,
-    FormsModule,
     SelectModule,
     InputModule,
     MainButtonModule,
-    RadioModule
+    RadioModule,
+    ReactiveFormsModule
   ]
 })
 export class RegistrationModule {

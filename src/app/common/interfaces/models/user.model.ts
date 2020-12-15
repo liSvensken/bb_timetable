@@ -4,7 +4,7 @@ import { CityModel } from '@common/interfaces/models/city.model';
 import { GenderEnum } from '@common/enums/gender.enum';
 
 
-export interface UserModelInterface {
+export interface UserModel {
   id?: number;
   role?: RoleEnum;
   nickname?: string;

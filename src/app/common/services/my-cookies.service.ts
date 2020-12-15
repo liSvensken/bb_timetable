@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { CookieService } from '@gorniv/ngx-universal';
+import { SessionService } from '@common/services/session.service';
 
 const PREFIX = 'lz_';
 const TOKEN_KEY = 'token';
 
 @Injectable({ providedIn: 'root' })
 export class MyCookiesService {
-  constructor(private cookies: CookieService) {
+  constructor(private cookies: CookieService,
+              private sessionService: SessionService) {
   }
 
   get(name: string, withoutPrefix?): string {
@@ -33,5 +35,6 @@ export class MyCookiesService {
 
   removeToken(): void {
     this.remove(TOKEN_KEY);
+    this.sessionService.removeCurrentUser();
   }
 }

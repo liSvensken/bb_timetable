@@ -1,7 +1,20 @@
-import { AfterViewInit, Component, forwardRef, HostListener, Injector, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  forwardRef,
+  HostListener,
+  Injector,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  ViewChild
+} from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { AbstractControl, ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
 import { NgSelectComponent } from '@ng-select/ng-select';
+import { ServiceModel } from '@common/interfaces/models/service.model';
+import { CityModel } from '@common/interfaces/models/city.model';
 
 @Component({
   selector: 'app-select',
@@ -15,42 +28,40 @@ import { NgSelectComponent } from '@ng-select/ng-select';
     }
   ]
 })
-export class SelectComponent implements OnInit, AfterViewInit, OnDestroy, ControlValueAccessor {
+export class SelectComponent implements OnChanges, OnInit, AfterViewInit, OnDestroy, ControlValueAccessor {
   componentDestroyed$ = new Subject();
   value = null;
   disabled = false;
-  servicesList$ = new BehaviorSubject(null);
+  itemsList$ = new BehaviorSubject<ServiceModel[] | CityModel[]>([]);
 
   @ViewChild('ngSelectComponent', { static: false }) ngSelectComponent: NgSelectComponent;
 
   @Input() placeholder: string;
   @Input() notFoundText: string;
+  @Input() itemsList: ServiceModel[] | CityModel[];
+  @Input() multipleBoll: boolean;
+  @Input() closeOnSelectBoll: boolean;
+  @Input() clearableBoll: boolean;
 
   ngControl: NgControl;
   control: FormControl | AbstractControl;
 
   private onChange = (value: any) => {
-  }
+  };
   private onTouched = () => {
-  }
+  };
 
   constructor(private inj: Injector) {
-    //
-    // this.registrationApiService.getServicesList()
-    //     .pipe(takeUntil(this.componentDestroyed$))
-    //     .subscribe(
-    //         value => {
-    //           console.log(value);
-    //           this.servicesList$.next(value.result);
-    //         },
-    //         error => console.log(error)
-    //     );
   }
 
   @HostListener('window:resize') resize(): void {
     if (this.ngSelectComponent.isOpen) {
       this.ngSelectComponent.close();
     }
+  }
+
+  ngOnChanges(): void {
+    this.itemsList$.next(this.itemsList);
   }
 
   ngOnInit(): void {

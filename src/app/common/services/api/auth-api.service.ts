@@ -7,7 +7,7 @@ import { RegistrationRequestInterface } from '@common/interfaces/api/registratio
 import { RegistrationResponse } from '@common/interfaces/api/registration-response.interface';
 import { getToken } from 'codelyzer/angular/styles/cssLexer';
 import { ApiService } from '@common/services/api/api.service';
-import { GetUserResponse } from '@common/interfaces/api/get-user-response.interface';
+import { UserSearchResponse } from '@common/interfaces/api/user-search-response.interface';
 
 @Injectable({ providedIn: 'root' })
 export class AuthApiService {
@@ -23,7 +23,7 @@ export class AuthApiService {
     return this.http.post<any>('http://127.0.0.1:3000/users/auth', model);
   }
 
-  getMy(): Observable<GetUserResponse> {
+  getMy(): Observable<UserSearchResponse> {
     return this.apiService.get('http://127.0.0.1:3000/user/token');
   }
 }

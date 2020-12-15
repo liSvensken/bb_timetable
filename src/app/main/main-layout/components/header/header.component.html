@@ -1,32 +1,56 @@
-<div class="header-wrapper">
-  <div class="header-content gl-page-content">
+<ng-container *ngIf="currentUser$ | async">
+  <div class="header-wrapper">
+    <div class="header-content gl-page-content">
 
-    <ng-container *ngIf="currentUser$ | async">
       <div class="block-wrapper">
-        <div class="link-wrapper">
-          <a [routerLink]="['']"
-             [routerLinkActive]="['link-active']">
-            Заголовок
+        <div class="link-wrapper" [routerLinkActive]="['link-active']">
+          <a [routerLink]="['']">
+            <ng-container *ngIf="(roleMaster$ | async)">
+              Клиенты
+            </ng-container>
+            <ng-container *ngIf="(roleClient$ | async)">
+              Мастера
+            </ng-container>
           </a>
         </div>
-        <div class="link-wrapper">
-          <a [routerLink]="['/not-auth/main']"
-             [routerLinkActive]="['link-active']">
-            На главную
+
+        <ng-container *ngIf="roleMaster$ | async">
+          <div class="link-wrapper" [routerLinkActive]="['link-active']">
+            <a [routerLink]="['/test']">
+              Расписание
+            </a>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="(roleClient$ | async)">
+          <div class="link-wrapper" [routerLinkActive]="['link-active']">
+            <a [routerLink]="['/test']">
+              Расписание
+            </a>
+          </div>
+        </ng-container>
+
+        <div class="link-wrapper" [routerLinkActive]="['link-active']">
+          <a [routerLink]="['/test']">
+            Уведомления
           </a>
         </div>
       </div>
 
       <div class="block-wrapper">
+        <div class="link-wrapper" [routerLinkActive]="['link-active']">
+          <a [routerLink]="['/test']">
+            {{ nickname$ | async }}
+          </a>
+        </div>
+
         <div class="link-wrapper">
           <a (click)="logOut()"
              [routerLink]="['/not-auth/authorization']">
-            {{ nickname$ | async }}
             Выход
           </a>
         </div>
       </div>
-    </ng-container>
-
+    </div>
   </div>
-</div>
+</ng-container>

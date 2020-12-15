@@ -1,0 +1,23 @@
+<form [formGroup]="formFilter">
+  <div class="block-item">
+    <app-select formControlName="service"
+                placeholder="Сервис"
+                notFoundText="Сервис не найден"
+                [itemsList]="serviceList$ | async"
+                [clearableBoll]="true"
+                [multipleBoll]="false"
+                [closeOnSelectBoll]="true">
+    </app-select>
+  </div>
+
+  <div class="block-item">
+    <app-select formControlName="city"
+                placeholder="Город"
+                notFoundText="Город не найден"
+                [itemsList]="citiesList$ | async"
+                [clearableBoll]="true"
+                [multipleBoll]="false"
+                [closeOnSelectBoll]="true">
+    </app-select>
+  </div>
+</form>

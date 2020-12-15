@@ -1,0 +1,79 @@
+@import "colors";
+
+.content-wrapper {
+  margin-top: 20px;
+}
+
+.grid-wrapper {
+  max-width: 900px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 30px;
+}
+
+.block-wrapper {
+  width: 200px;
+}
+
+
+.block-item {
+  & + & {
+    margin-top: 20px;
+  }
+}
+
+.card-wrapper {
+  width: 100%;
+  padding: 10px 0;
+  border-bottom: 1px solid $border-color;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-gap: 20px;
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  &:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+}
+
+.card-block {
+}
+
+
+.card-name {
+  font-style: italic;
+  font-size: 14px;
+}
+
+.card-item {
+  & + & {
+    margin-top: 6px;
+  }
+}
+
+.card-service {
+  border-radius: 9px;
+  padding: 1px 10px;
+  background-color: rgb(171 171 171 / 21%);
+
+  & + & {
+    margin-left: 4px;
+  }
+}
+
+.card-avatar {
+  background-image: url("https://st.depositphotos.com/1025804/4668/i/600/depositphotos_46682893-stock-photo-closeup-portrait-of-sexy-young.jpg");
+  width: 110px;
+  height: 110px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  border-radius: 100px;
+}
+
+.btn-wrapper {
+}

@@ -19,6 +19,8 @@ export class AppInitService {
           .subscribe(data => {
             if (data) {
               this.sessionService.setCurrentUser(data.result[0]);
+            } else {
+              this.cookiesService.removeToken();
             }
             resolve();
           });

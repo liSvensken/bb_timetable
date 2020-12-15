@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
-import { UserModelInterface } from '@common/interfaces/models/user.model';
+import { UserModel } from '@common/interfaces/models/user.model';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class SessionService {
-  user$ = new BehaviorSubject<UserModelInterface>(null);
+  user$ = new BehaviorSubject<UserModel>(null);
 
   constructor() {
   }
 
-  setCurrentUser(user: UserModelInterface): void {
+  setCurrentUser(user: UserModel): void {
     this.user$.next(user);
   }
 
-  getCurrentUser(): UserModelInterface | null {
+  getCurrentUser(): UserModel | null {
     return this.user$.value;
   }
 
