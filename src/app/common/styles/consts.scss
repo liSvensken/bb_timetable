@@ -1,2 +1,10 @@
 $header-height: 56px;
-$page-content-padding: 16px;
+
+$page-content-padding-fl: 100px;
+$page-content-padding-hg-down: 80px;
+$page-content-padding-lg-down: 40px;
+$page-content-padding-bg-down: 32px;
+$page-content-padding-md-down: 24px;
+$page-content-padding-sm-down: 16px;
+
+$padding-top-content: calc(#{ $header-height} + 30px);

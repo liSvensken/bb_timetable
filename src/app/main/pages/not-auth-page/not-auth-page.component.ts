@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-master',
+  selector: 'app-not-auth',
   templateUrl: './not-auth-page.component.html',
   styleUrls: ['./not-auth-page.component.scss']
 })

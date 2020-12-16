@@ -19,6 +19,8 @@ export class SearchComponent implements OnInit, OnDestroy {
   componentDestroyed$ = new Subject();
   search$ = new Subject();
   lastPage = false;
+  isLoading$ = new BehaviorSubject(false);
+  isErrors$ = new BehaviorSubject(false);
 
   formFilter = this.db.group({
     service: [null],
@@ -28,9 +30,6 @@ export class SearchComponent implements OnInit, OnDestroy {
   searchControl = this.db.control('');
 
   masters$ = new BehaviorSubject<UserModel[]>(null);
-
-  isLoading$ = new BehaviorSubject(false);
-  isErrors$ = new BehaviorSubject(false);
 
   constructor(private activatedRoute: ActivatedRoute,
               private db: FormBuilder,

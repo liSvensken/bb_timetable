@@ -1,69 +1,31 @@
-<div class="content-wrapper gl-page-content">
-  <div class="grid-wrapper">
+<div class="search-wrapper gl-page-content">
+  <div class="side-block-left">
+    <app-main-button [link]="'/test'" content="Найти нового мастера"></app-main-button>
+  </div>
 
-    <div class="block-wrapper">
-      <a [routerLink]="'/not-auth'">Найти нового мастера</a>
+  <div class="gl-window-wrapper mod-medium" infiniteScroll (scrolled)="onScroll()">
+    <div class="gl-title-bookmark-wrapper">
+      <h2>Мои мастера</h2>
     </div>
-
-    <div class="gl-window-wrapper mod-medium" infiniteScroll (scrolled)="onScroll()">
-      <div class="gl-window">
-        <div class="gl-window-content mod-medium">
-          Мои мастера
+    <div class="gl-window">
+      <div class="gl-window-content mod-medium">
+        <div class="input-search-wrapper">
           <app-input type="text" placeholder="Поиск" [formControl]="searchControl"></app-input>
-
-          <div class="card-wrapper">
-            <div class="card-block">
-              <div class="card-avatar"></div>
-            </div>
-
-            <div class="card-block">
-              <div class="card-item">
-                <a class="gl-link">elizaveta_sh</a>
-              </div>
-              <div class="card-item card-name">Елизавета Шведчикова</div>
-              <div class="card-item card-service-wrapper">
-                <span class="card-service">Маникюр</span>
-                <span class="card-service">Массаж</span>
-              </div>
-            </div>
-
-            <div class="card-block">
-              <div class="card-item btn-wrapper">
-                <app-main-button content="Расписание" [link]="'/'" [styleSmall]="true"></app-main-button>
-              </div>
-            </div>
-          </div>
-
-          <div class="card-wrapper">
-            <div class="card-block">
-              <div class="card-avatar"></div>
-            </div>
-
-            <div class="card-block">
-              <div class="card-item">
-                <a class="gl-link">elizaveta_sh</a>
-              </div>
-              <div class="card-item card-name">Елизавета Шведчикова</div>
-              <div class="card-item card-service-wrapper">
-                <span class="card-service">Маникюр</span>
-                <span class="card-service">Массаж</span>
-              </div>
-            </div>
-
-            <div class="card-block">
-              <div class="card-item btn-wrapper">
-                <app-main-button content="Расписание" [link]="'/'" [styleSmall]="true"></app-main-button>
-              </div>
-            </div>
-          </div>
-
         </div>
+
+        <div class="cards-list">
+          <div class="card-wrapper" *ngFor="let master of (masters$ | async)">
+            <app-user-card [user]="master"></app-user-card>
+          </div>
+        </div>
+
       </div>
     </div>
+  </div>
 
-    <div class="block-wrapper">
+  <div class="side-block-right-wrapper">
+    <div class="side-block-right">
       <app-filter [formFilter]="formFilter"></app-filter>
     </div>
-
   </div>
 </div>

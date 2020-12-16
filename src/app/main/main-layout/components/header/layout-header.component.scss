@@ -1,8 +1,19 @@
 @import "content";
 @import "colors";
 
+:host {
+  position: fixed;
+  z-index: 120;
+  width: 100%;
+}
+
 .header-wrapper {
   height: $header-height;
+  background: transparent;
+
+  &.mod-scroll {
+    background: $main-background;
+  }
 }
 
 .header-content {

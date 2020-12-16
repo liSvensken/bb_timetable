@@ -1,7 +1,6 @@
 <ng-container *ngIf="currentUser$ | async">
-  <div class="header-wrapper">
+  <header class="header-wrapper" [class.mod-scroll]="isScroll$ | async">
     <div class="header-content gl-page-content">
-
       <div class="block-wrapper">
         <div class="link-wrapper" [routerLinkActive]="['link-active']">
           <a [routerLink]="['']">
@@ -52,5 +51,5 @@
         </div>
       </div>
     </div>
-  </div>
+  </header>
 </ng-container>

@@ -18,4 +18,6 @@ export interface UserModel {
   birthday?: string;
   avatar?: string;
   infoYourself?: string;
+  myMasters?: UserModel[];
+  myClients?: UserModel[];
 }

@@ -9,6 +9,7 @@ import { FilterComponent } from './components/filter/filter.component';
 import { InputModule } from '@common/components/controls/input/input.module';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { SearchResolve } from './search.resolve';
+import { UserCardComponent } from './components/user-card/user-card.component';
 
 const routes: Routes = [
   {
@@ -21,7 +22,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     SearchComponent,
-    FilterComponent
+    FilterComponent,
+    UserCardComponent
   ],
   imports: [
     CommonModule,

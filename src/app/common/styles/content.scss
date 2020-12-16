@@ -5,35 +5,29 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: radial-gradient(circle farthest-corner at 100px 50px, #FBF2EB, #decdc0);
-}
-
-.gl-layout-header {
-  flex: 0 0 auto;
+  background: $main-background;
 }
 
 .gl-layout-content {
-  flex: 1 1 100%;
-}
-
-.gl-layout-footer {
-  flex: 0 0 auto;
+  padding-top: $padding-top-content;
+  display: flex;
+  justify-content: center;
 }
 
 .gl-page-content {
-  display: flex;
-  justify-content: center;
-  padding-left: 100px;
-  padding-right: 100px;
+  margin: 0 auto;
+  max-width: 1400px;
+  padding-left: $page-content-padding-fl;
+  padding-right: $page-content-padding-fl;
 }
 
-h3 {
+h2 {
   font-size: 18px;
   font-weight: 500;
 }
 
 .gl-link, {
-  padding: 6px 0;
+  padding-bottom: 6px;
   color: $secondary-color !important;
   position: relative;
 
@@ -77,6 +71,7 @@ h3 {
   border: 1px solid $border-color;
   box-shadow: 0 0 35px 0 #b1b1b1;
   border-radius: 6px;
+  position: relative;
 
   &.mod-small {
     width: 400px;
@@ -84,7 +79,7 @@ h3 {
   }
 
   &.mod-medium {
-    min-width: 600px;
+    width: 600px;
   }
 
   &.mod-big {
@@ -115,6 +110,21 @@ h3 {
     background: #fffffe;
     box-shadow: 0 0 0 1px #342626, 0 0 0 12px #9c8778;
   }
+}
+
+.gl-title-bookmark-wrapper {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: -41px;
+  right: 20px;
+  height: 40px;
+  padding: 0 26px;
+  border: 2px solid #6e5a2f;
+  border-bottom: none;
+  border-radius: 10px 10px 0 0;
+  background-color: $main-color;
 }
 
 .gl-auth-subtitle {

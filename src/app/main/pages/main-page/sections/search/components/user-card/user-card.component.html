@@ -1,0 +1,26 @@
+<div class="grid-wrapper">
+  <ng-container *ngIf="user.avatar; else NO_AVATAR">
+    <div class="avatar" [ngStyle]="{'background-image': 'url(' + (user.avatar) +')'}"></div>
+  </ng-container>
+  <ng-template #NO_AVATAR>
+    <div class="avatar"></div>
+  </ng-template>
+
+  <div>
+    <div class="card-item nickname-wrapper">
+      <a class="gl-link">{{ user.nickname }}</a>
+    </div>
+    <div class="card-item name">
+      {{ user.lastsName }} {{ user.firsName }}
+    </div>
+    <div class="card-item services-wrapper">
+      <div class="service" *ngFor="let service of user.services">
+        {{ service.name }}
+      </div>
+    </div>
+  </div>
+
+  <div class="card-item btn-wrapper">
+    <button class="btn-calendar"></button>
+  </div>
+</div>
