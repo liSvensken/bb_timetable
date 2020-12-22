@@ -10,6 +10,7 @@
 
 .gl-layout-content {
   padding-top: $padding-top-content;
+  padding-bottom: $padding-bottom-content;
   display: flex;
   justify-content: center;
 }
@@ -140,6 +141,12 @@ h2 {
   &.mod-medium {
     padding-top: 10px;
   }
+}
+
+.gl-no-content-window-caption {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
 }
 
 .gl-auth-radios-wrapper, .gl-auth-inputs-wrapper, .gl-auth-bnt-wrapper {

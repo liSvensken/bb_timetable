@@ -1,12 +1,6 @@
 import { CommonResponse } from '@common/interfaces/api/common-response';
 import { RoleEnum } from '@common/enums/role.enum';
+import { UserModel } from '@common/interfaces/models/user.model';
 
-
-interface Result {
-  id: number;
-  role: RoleEnum;
-  nickname: string;
-}
-
-export interface RegistrationResponse extends CommonResponse<Result> {
+export interface RegistrationResponse extends CommonResponse<UserModel> {
 }

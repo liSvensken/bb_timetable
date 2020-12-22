@@ -1,0 +1,65 @@
+@import "app/common/styles/colors";
+
+.grid-wrapper {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-gap: 20px;
+}
+
+.card-item {
+  & + & {
+    margin-top: 10px;
+  }
+
+  &.name {
+    font-style: italic;
+    font-size: 12px;
+  }
+
+  &.city-wrapper, &.services-wrapper {
+    display: flex;
+
+    .city, .service {
+      border-radius: 9px;
+      padding: 1px 10px;
+      font-size: 12px;
+    }
+
+    .city {
+      background-color: $main-color-opacity-3;
+    }
+  }
+
+  &.services-wrapper {
+    flex-wrap: wrap;
+    margin-bottom: -4px;
+
+    .service {
+      background-color: $third-color-opacity-2;
+      margin-bottom: 4px;
+      margin-right: 4px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+.avatar {
+  background-image: url("https://ipbmafia.ru/uploads/monthly_2017_07/camera_400.png.fb69ac5f6f90010f4ad8e827cf0233ca.png");
+  width: 80px;
+  height: 80px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 100px;
+}
+
+.btn-calendar {
+  background-image: url('/assets/icons/calendar-3.svg');
+  background-size: contain;
+  width: 24px;
+  height: 24px;
+}

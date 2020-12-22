@@ -12,7 +12,7 @@ export class IsNotAuthGuard implements CanActivate, CanActivateChild {
     if (!(this.myCookiesService.getToken())) {
       return true;
     } else {
-      this.router.navigate(['/search']);
+      this.router.navigate(['/subscribers']);
     }
   }
 

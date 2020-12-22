@@ -1,0 +1,35 @@
+<div class="search-wrapper gl-page-content">
+  <div class="side-block-left">
+    <app-main-button [link]="linkBtn" [content]="btnContent"></app-main-button>
+  </div>
+
+  <div class="gl-window-wrapper mod-medium" infiniteScroll (scrolled)="onScroll()">
+    <div class="gl-title-bookmark-wrapper">
+      <h2>{{ pageName }}</h2>
+    </div>
+    <div class="gl-window">
+      <div class="gl-window-content mod-medium">
+        <div class="input-search-wrapper">
+          <app-input type="text" placeholder="Поиск" [formControl]="formFilter.controls.query"></app-input>
+        </div>
+
+        <div class="cards-list">
+          <div class="card-wrapper" *ngFor="let subscriber of (subscribersList$ | async)">
+            <app-user-card [user]="subscriber"></app-user-card>
+          </div>
+          <ng-container *ngIf="!(subscribersList$ | async).length">
+            <div class="gl-no-content-window-caption">Пользователи не найдены</div>
+          </ng-container>
+        </div>
+
+      </div>
+      <div class="gl-loader-dots" [class.mod-show]="isLoading$ | async"></div>
+    </div>
+  </div>
+
+  <div class="side-block-right-wrapper">
+    <div class="side-block-right">
+      <app-filter [formFilter]="formFilter"></app-filter>
+    </div>
+  </div>
+</div>

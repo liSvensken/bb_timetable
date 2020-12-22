@@ -18,7 +18,7 @@ export class AppInitService {
           .pipe(take(1))
           .subscribe(data => {
             if (data) {
-              this.sessionService.setCurrentUser(data.result[0]);
+              this.sessionService.setCurrentUser(data.result);
             } else {
               this.cookiesService.removeToken();
             }

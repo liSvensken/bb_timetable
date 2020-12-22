@@ -4,6 +4,7 @@ import { SessionService } from '@common/services/session.service';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { RoleEnum } from '@common/enums/role.enum';
 import { takeUntil } from 'rxjs/operators';
+import { UserModel } from '@common/interfaces/models/user.model';
 
 @Component({
   selector: 'app-layout-header',
@@ -11,7 +12,7 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./layout-header.component.scss']
 })
 export class LayoutHeaderComponent implements OnInit, OnDestroy {
-  currentUser$ = new BehaviorSubject(null);
+  currentUser$ = new BehaviorSubject<UserModel>(null);
   roleMaster$ = new BehaviorSubject<boolean>(null);
   roleClient$ = new BehaviorSubject<boolean>(null);
   nickname$ = new BehaviorSubject<string>(null);
@@ -22,12 +23,12 @@ export class LayoutHeaderComponent implements OnInit, OnDestroy {
 
   constructor(private myCookiesService: MyCookiesService,
               private sessionService: SessionService) {
+    this.currentUser$ = this.sessionService.user$;
   }
 
   ngOnInit(): void {
     window.addEventListener('scroll', this.scroll);
 
-    this.currentUser$ = this.sessionService.user$;
     this.currentUser$
       .pipe(takeUntil(this.componentDestroyed$))
       .subscribe(() => {

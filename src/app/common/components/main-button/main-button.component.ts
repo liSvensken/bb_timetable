@@ -15,5 +15,4 @@ export class MainButtonComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

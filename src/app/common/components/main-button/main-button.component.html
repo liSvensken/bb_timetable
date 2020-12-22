@@ -1,13 +1,3 @@
-<button type="submit" class="btn mod-small" [class.mod-small]="styleSmall">
-    <span class="content">
-      <ng-container *ngIf="link; else NO_LINK">
-        <a [routerLink]="link">
-          {{ content }}
-        </a>
-      </ng-container>
-
-      <ng-template #NO_LINK>
-           {{ content }}
-      </ng-template>
-    </span>
+<button type="submit" class="btn mod-small" [class.mod-small]="styleSmall" [routerLink]="link">
+  <span class="content">{{ content }}</span>
 </button>

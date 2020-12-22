@@ -11,14 +11,14 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: () => import('./pages/main-page/main-page.module')
-          .then((m => m.MainPageModule)),
+        loadChildren: () => import('./sections/main-section/main-section.module')
+          .then((m => m.MainSectionModule)),
         canActivate: [IsAuthGuard]
       },
       {
         path: 'not-auth',
-        loadChildren: () => import('./pages/not-auth-page/not-auth-page.module')
-          .then((m => m.NotAuthPageModule)),
+        loadChildren: () => import('./sections/not-auth-section/not-auth-section.module')
+          .then((m => m.NotAuthSectionModule)),
         canActivate: [IsNotAuthGuard]
       }
     ]

@@ -1,13 +1,12 @@
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { AuthorizationRequest } from '@common/interfaces/api/authorization-request.interface';
 import { AuthorizationResponse } from '@common/interfaces/api/authorization-response.interface';
 import { RegistrationRequestInterface } from '@common/interfaces/api/registration-request.interface';
 import { RegistrationResponse } from '@common/interfaces/api/registration-response.interface';
-import { getToken } from 'codelyzer/angular/styles/cssLexer';
 import { ApiService } from '@common/services/api/api.service';
-import { UserSearchResponse } from '@common/interfaces/api/user-search-response.interface';
+import { GetUserResponse } from '@common/interfaces/api/get-user-response.interface';
 
 @Injectable({ providedIn: 'root' })
 export class AuthApiService {
@@ -23,7 +22,7 @@ export class AuthApiService {
     return this.http.post<any>('http://127.0.0.1:3000/users/auth', model);
   }
 
-  getMy(): Observable<UserSearchResponse> {
+  getMy(): Observable<GetUserResponse> {
     return this.apiService.get('http://127.0.0.1:3000/user/token');
   }
 }

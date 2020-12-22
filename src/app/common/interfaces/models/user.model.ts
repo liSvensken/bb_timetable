@@ -10,7 +10,7 @@ export interface UserModel {
   nickname?: string;
   email?: string;
   services?: ServiceModel[];
-  cities?: CityModel[];
+  city?: CityModel;
   lastsName?: string;
   firsName?: string;
   phone?: string;
