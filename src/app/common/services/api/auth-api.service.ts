@@ -1,10 +1,10 @@
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { AuthorizationRequest } from '@common/interfaces/api/authorization-request.interface';
-import { AuthorizationResponse } from '@common/interfaces/api/authorization-response.interface';
-import { RegistrationRequestInterface } from '@common/interfaces/api/registration-request.interface';
-import { RegistrationResponse } from '@common/interfaces/api/registration-response.interface';
+import { AuthorizationRequest } from '../../../main/sections/not-auth-section/pages/authorization/interfaces/api/authorization-request.interface';
+import { AuthorizationResponse } from '../../../main/sections/not-auth-section/pages/authorization/interfaces/api/authorization-response.interface';
+import { RegistrationRequestInterface } from '../../../main/sections/not-auth-section/pages/registration/interfaces/api/registration-request.interface';
+import { RegistrationResponse } from '../../../main/sections/not-auth-section/pages/registration/interfaces/api/registration-response.interface';
 import { ApiService } from '@common/services/api/api.service';
 import { GetUserResponse } from '@common/interfaces/api/get-user-response.interface';
 

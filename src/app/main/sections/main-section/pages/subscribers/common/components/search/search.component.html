@@ -15,7 +15,7 @@
 
         <div class="cards-list">
           <div class="card-wrapper" *ngFor="let subscriber of (subscribersList$ | async)">
-            <app-user-card [user]="subscriber"></app-user-card>
+            <app-user-card [user]="subscriber" [link]="linkBtn"></app-user-card>
           </div>
           <ng-container *ngIf="!(subscribersList$ | async).length">
             <div class="gl-no-content-window-caption">Пользователи не найдены</div>

@@ -1,14 +1,16 @@
 <div class="grid-wrapper">
-  <ng-container *ngIf="user.avatar; else NO_AVATAR">
-    <div class="avatar" [ngStyle]="{'background-image': 'url(' + (user.avatar) +')'}"></div>
-  </ng-container>
-  <ng-template #NO_AVATAR>
-    <div class="avatar"></div>
-  </ng-template>
+  <a [routerLink]="['./lk']">
+    <ng-container *ngIf="user.avatar; else NO_AVATAR">
+      <div class="avatar" [ngStyle]="{'background-image': 'url(' + (user.avatar) +')'}"></div>
+    </ng-container>
+    <ng-template #NO_AVATAR>
+      <div class="avatar"></div>
+    </ng-template>
+  </a>
 
   <div>
     <div class="card-item nickname-wrapper">
-      <a class="gl-link">{{ user.nickname }}</a>
+      <a class="gl-link" [routerLink]="['./lk']">{{ user.nickname }}</a>
     </div>
     <div class="card-item name">
       {{ user.lastsName }} {{ user.firsName }}
@@ -27,7 +29,7 @@
 
   <ng-container *ngIf="!(isMaster$ | async)">
     <div class="card-item btn-wrapper">
-      <button class="btn-calendar"></button>
+      <button class="btn-calendar" [routerLink]="['/timetable']"></button>
     </div>
   </ng-container>
 </div>

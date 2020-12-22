@@ -11,6 +11,7 @@ import { RoleEnum } from '@common/enums/role.enum';
 })
 export class UserCardComponent implements OnInit {
   @Input() user: UserModel;
+  @Input() link: string;
 
   currentUser$ = new BehaviorSubject<UserModel>(null);
   isMaster$ = new BehaviorSubject<boolean>(null);
