@@ -21,6 +21,11 @@ const routes: Routes = [
           .then(m => m.SubscribersPageModule)
       },
       {
+        path: ':userName',
+        loadChildren: () => import('./pages/profile-page/profile-page.module')
+          .then(m => m.ProfilePageModule)
+      },
+      {
         path: '',
         redirectTo: 'my-subscribers'
       }

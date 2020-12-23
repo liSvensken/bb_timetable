@@ -6,11 +6,10 @@ import { UsersApiService } from '@common/services/api/users-api.service';
 import { UsersSearchRequest } from '@common/interfaces/api/users-search-request.interface';
 import { UserModel } from '@common/interfaces/models/user.model';
 import { ActivatedRoute } from '@angular/router';
-import { LIMIT_PAGE } from './search.utils';
 import { UsersSearchResponse } from '@common/interfaces/api/user-search-response.interface';
 import { SessionService } from '@common/services/session.service';
-import { RoleEnum } from '@common/enums/role.enum';
 import { cleanObject } from '@common/utils/common.utils';
+import { RoleEnum } from '@common/enums/role.enum';
 
 @Component({
   selector: 'app-search',
