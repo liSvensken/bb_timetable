@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { UsersApiService } from '@common/services/api/users-api.service';
 
 @Component({
   selector: 'app-profile-page',
@@ -7,12 +8,19 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./profile-page.component.scss']
 })
 export class ProfilePageComponent implements OnInit {
+  profileName: string;
 
-  constructor(private activatedRoute: ActivatedRoute) {
+  constructor(private activatedRoute: ActivatedRoute,
+              private usersApiService: UsersApiService) {
+
     this.activatedRoute.params
       .subscribe(v => {
-        console.log(v);
+        this.profileName = v.nickname;
       });
+
+    // this.usersApiService.getUserByNickname(this.userNickname)
+    //   .pipe()
+    //   .subscribe();
   }
 
   ngOnInit(): void {

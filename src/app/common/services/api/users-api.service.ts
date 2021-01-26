@@ -15,6 +15,6 @@ export class UsersApiService {
   }
 
   getUserByNickname(nickname): Observable<GetUserByNicknameResponse> {
-    return this.apiService.get(`/users/:${ nickname }`);
+    return this.apiService.get(`http://127.0.0.1:3000/users/:${ nickname }`);
   }
 }
