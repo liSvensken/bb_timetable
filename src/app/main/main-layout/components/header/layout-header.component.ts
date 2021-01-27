@@ -13,8 +13,8 @@ import { UserModel } from '@common/interfaces/models/user.model';
 })
 export class LayoutHeaderComponent implements OnInit, OnDestroy {
   currentUser$ = new BehaviorSubject<UserModel>(null);
-  roleMaster$ = new BehaviorSubject<boolean>(null);
-  roleClient$ = new BehaviorSubject<boolean>(null);
+  roleIsMaster$ = new BehaviorSubject<boolean>(null);
+  roleIsClient$ = new BehaviorSubject<boolean>(null);
   nickname$ = new BehaviorSubject<string>(null);
 
   componentDestroyed$ = new Subject();
@@ -33,8 +33,8 @@ export class LayoutHeaderComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.componentDestroyed$))
       .subscribe(() => {
         if (this.currentUser$.value) {
-          this.roleMaster$.next(this.currentUser$.value.role === RoleEnum.MASTER);
-          this.roleClient$.next(this.currentUser$.value.role === RoleEnum.CLIENT);
+          this.roleIsMaster$.next(this.currentUser$.value.role === RoleEnum.MASTER);
+          this.roleIsClient$.next(this.currentUser$.value.role === RoleEnum.CLIENT);
           this.nickname$.next(this.currentUser$.value.nickname);
         }
       });

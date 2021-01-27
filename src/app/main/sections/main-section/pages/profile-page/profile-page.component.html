@@ -16,53 +16,57 @@
     <div class="gl-window-content mod-medium">
       <app-yourself [user]="user$ | async"></app-yourself>
 
-      <div class="services-list-wrapper">
-        <button class="service" *ngFor="let service of (user$ | async).services">
-          {{ service.name }}
-        </button>
-      </div>
-
-      <div class="gallery-wrapper">
-        <div class="photos-wrapper">
-          <div class="photo"></div>
-          <div class="photo"></div>
-          <div class="photo"></div>
-          <div class="photo"></div>
+      <ng-container *ngIf="currentRoleIsClient$ |async">
+        <div class="services-list-wrapper">
+          <button class="service" *ngFor="let service of (user$ | async).services">
+            {{ service.name }}
+          </button>
         </div>
 
-        <div class="caption-wrapper">
-          <a class="gl-link">16 фото</a>
-        </div>
-      </div>
+          <!--Если есть фото для галлереи-->
+        <div class="gallery-wrapper">
+          <div class="photos-wrapper">
+            <div class="photo"></div>
+            <div class="photo"></div>
+            <div class="photo"></div>
+            <div class="photo"></div>
+          </div>
 
-      <div class="info-wrapper">
-        <div class="caption">Информация об услуге</div>
-        <div class="stickers-wrapper">
-          <div class="sticker">
-            Мой прайс: <br>
-            Стрижка женская - 500р<br>
-            Стрижка мужская - 400р<br>
-            Стрижка детская - 2000р<br>
-            Укладка - 700<br>
-            Покраска - 2000р - 5000р
-          </div>
-          <div class="sticker">
-            Мой адрес<br>
-            Володарского, 5
-          </div>
-          <div class="sticker">
-            Мои контакты:<br>
-            Телеграм: ****<br>
-            Инст: ****
-          </div>
-          <div class="sticker">
-            Правила записи:<br>
-            Без детей<br>
-            Без недовольного мужа<br>
-            С шоколадкой - по желанию
+          <div class="caption-wrapper">
+            <a class="gl-link">16 фото</a>
           </div>
         </div>
-      </div>
+
+        <!--Если есть Информация об услуге-->
+        <div class="info-wrapper">
+          <div class="caption">Информация об услуге</div>
+          <div class="stickers-wrapper">
+            <div class="sticker">
+              Мой прайс: <br>
+              Стрижка женская - 500р<br>
+              Стрижка мужская - 400р<br>
+              Стрижка детская - 2000р<br>
+              Укладка - 700<br>
+              Покраска - 2000р - 5000р
+            </div>
+            <div class="sticker">
+              Мой адрес<br>
+              Володарского, 5
+            </div>
+            <div class="sticker">
+              Мои контакты:<br>
+              Телеграм: ****<br>
+              Инст: ****
+            </div>
+            <div class="sticker">
+              Правила записи:<br>
+              Без детей<br>
+              Без недовольного мужа<br>
+              С шоколадкой - по желанию
+            </div>
+          </div>
+        </div>
+      </ng-container>
     </div>
   </div>
 </div>

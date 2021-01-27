@@ -4,16 +4,16 @@
       <div class="block-wrapper">
         <div class="link-wrapper" [routerLinkActive]="['link-active']">
           <a [routerLink]="['']">
-            <ng-container *ngIf="(roleMaster$ | async)">
+            <ng-container *ngIf="(roleIsMaster$ | async)">
               Клиенты
             </ng-container>
-            <ng-container *ngIf="(roleClient$ | async)">
+            <ng-container *ngIf="(roleIsClient$ | async)">
               Мастера
             </ng-container>
           </a>
         </div>
 
-        <ng-container *ngIf="roleMaster$ | async">
+        <ng-container *ngIf="roleIsMaster$ | async">
           <div class="link-wrapper" [routerLinkActive]="['link-active']">
             <a [routerLink]="['/test']">
               Расписание
@@ -21,7 +21,7 @@
           </div>
         </ng-container>
 
-        <ng-container *ngIf="(roleClient$ | async)">
+        <ng-container *ngIf="(roleIsClient$ | async)">
           <div class="link-wrapper" [routerLinkActive]="['link-active']">
             <a [routerLink]="['/test']">
               Расписание

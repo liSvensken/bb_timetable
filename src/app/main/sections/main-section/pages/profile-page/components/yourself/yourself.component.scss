@@ -11,6 +11,7 @@
   background-color: #ffffff;
   border: 1px solid #6e5a2f;
   position: relative;
+  box-shadow: 2px 4px 8px 1px $box-shadow;
 
   &:before {
     position: absolute;
