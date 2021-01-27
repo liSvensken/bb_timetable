@@ -1,6 +1,6 @@
 export interface CommonResponse<T> {
   result?: T;
-  token: string;
+  token?: string;
   error?: {
     type: string;
     field?: string;

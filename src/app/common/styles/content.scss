@@ -53,6 +53,14 @@ h2 {
   }
 }
 
+.gl-secondary-link {
+  color: $secondary-color;
+
+  &:hover {
+    color: $third-color;
+  }
+}
+
 .gl-error-control {
   height: 0;
   margin-top: 6px;
@@ -169,5 +177,33 @@ h2 {
 
 .gl-substr {
   font-size: 12px;
+}
+
+.gl-side-block-left {
+  width: $side-btn-width;
+  top: $padding-top-content;
+  position: fixed;
+  margin-left: calc((#{$side-btn-width} + 40px) * -1);
+}
+
+.gl-side-block-right-wrapper {
+  width: $side-btn-width;
+  position: absolute;
+  top: 0;
+  right: calc((#{$page-content-padding-fl} + 20px) * -1);
+
+  .side-block-right {
+    width: $side-btn-width;
+    position: fixed;
+  }
+
+  &.mod-selector {
+    width: $side-selector-width;
+
+    .side-block-right {
+      width: $side-selector-width;
+      position: fixed;
+    }
+  }
 }
 

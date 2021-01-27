@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { UsersApiService } from '@common/services/api/users-api.service';
+import { GetUserByNicknameResponse } from '@common/interfaces/api/get-user-by-nickname-response.interface';
+import { UserModel } from '@common/interfaces/models/user.model';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-profile-page',
@@ -8,22 +10,15 @@ import { UsersApiService } from '@common/services/api/users-api.service';
   styleUrls: ['./profile-page.component.scss']
 })
 export class ProfilePageComponent implements OnInit {
-  profileName: string;
+  user$ = new BehaviorSubject<UserModel>(null);
 
-  constructor(private activatedRoute: ActivatedRoute,
-              private usersApiService: UsersApiService) {
-
-    this.activatedRoute.params
-      .subscribe(v => {
-        this.profileName = v.nickname;
-      });
-
-    // this.usersApiService.getUserByNickname(this.userNickname)
-    //   .pipe()
-    //   .subscribe();
+  constructor(private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit(): void {
+    const pageData: GetUserByNicknameResponse = this.activatedRoute.snapshot.data.pageData;
+    if (!pageData.error) {
+      this.user$.next(pageData.result);
+    }
   }
-
 }

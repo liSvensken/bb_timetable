@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { ProfilePageComponent } from './profile-page.component';
 import { ProfilePageResolve } from './profile-page.resolve';
+import { MainButtonModule } from '@common/components/main-button/main-button.module';
 
 const routes: Routes = [
   {
@@ -19,6 +20,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
+    MainButtonModule,
   ],
   providers: [
     ProfilePageResolve

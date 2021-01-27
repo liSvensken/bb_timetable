@@ -1,4 +1,4 @@
-@import "app/common/styles/colors";
+@import "colors";
 
 .grid-wrapper {
   width: 100%;
@@ -48,7 +48,7 @@
 }
 
 .avatar {
-  background-image: url("https://ipbmafia.ru/uploads/monthly_2017_07/camera_400.png.fb69ac5f6f90010f4ad8e827cf0233ca.png");
+  background-image: url('~assets/images/no-photo.png');
   width: 80px;
   height: 80px;
   background-repeat: no-repeat;
@@ -58,7 +58,7 @@
 }
 
 .btn-calendar {
-  background-image: url('/assets/icons/calendar-3.svg');
+  background-image: url('~assets/icons/calendar-3.svg');
   background-size: contain;
   width: 24px;
   height: 24px;
