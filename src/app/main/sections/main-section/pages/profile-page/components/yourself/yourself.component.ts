@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { UserModel } from '@common/interfaces/models/user.model';
 
 @Component({
   selector: 'app-yourself',
@@ -6,8 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./yourself.component.scss']
 })
 export class YourselfComponent implements OnInit {
+  @Input() user: UserModel;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

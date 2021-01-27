@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProfilePageComponent } from './profile-page.component';
 import { ProfilePageResolve } from './profile-page.resolve';
 import { MainButtonModule } from '@common/components/main-button/main-button.module';
+import { YourselfComponent } from './components/yourself/yourself.component';
 
 const routes: Routes = [
   {
@@ -15,7 +16,8 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    ProfilePageComponent
+    ProfilePageComponent,
+    YourselfComponent
   ],
   imports: [
     CommonModule,

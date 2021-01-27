@@ -1,1 +1,42 @@
-<p>yourself works!</p>
+<div class="grid-wrapper">
+  <div class="left-block">
+    <div class="avatar-wrapper">
+      <ng-container *ngIf="user.avatar; else NO_PHOTO">
+        <div class="avatar" [ngStyle]="{ 'background-image': 'url(' + user.avatar + ')'}"></div>
+      </ng-container>
+      <ng-template #NO_PHOTO>
+        <div class="avatar"></div>
+      </ng-template>
+    </div>
+  </div>
+  <div class="right-block">
+    <div class="user-name-wrapper">
+      <div class="user-name">
+        {{ user.lastsName }} {{ user.firsName }}
+      </div>
+    </div>
+    <div class="item-wrapper">
+      <ng-container *ngIf="user.city.name">
+        <div class="caption">Город:</div>
+        <a class="value gl-secondary-link">{{ user.city.name }}</a>
+      </ng-container>
+    </div>
+    <div class="item-wrapper">
+      <ng-container *ngIf="user.birthday">
+        <div class="caption">День рождения:</div>
+        <a class="value gl-secondary-link">{{ user.birthday }}</a>
+      </ng-container>
+    </div>
+    <div class="item-wrapper">
+      <ng-container *ngIf="user.gender">
+        <div class="caption">Пол:</div>
+        <a class="value gl-secondary-link">{{ user.gender }}</a>
+      </ng-container>
+    </div>
+    <div class="text-wrapper">
+      <ng-container *ngIf="user.infoYourself">
+        <p class="text">{{ user.infoYourself }}</p>
+      </ng-container>
+    </div>
+  </div>
+</div>

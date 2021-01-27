@@ -1,76 +1,94 @@
 @import "colors";
 
+.side-btn-wrapper {
+  & + & {
+    margin-top: 20px;
+  }
+}
+
 .profile-wrapper {
   position: relative;
 }
 
-.grid-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  grid-gap: 30px;
-}
-
-.avatar-wrapper {
-  width: 100%;
-  background-color: #ffffff;
-  border: 1px solid #6e5a2f;
-  position: relative;
-
-  &:before {
-    position: absolute;
-    content: "";
-    width: 40px;
-    height: 40px;
-    top: -15px;
-    left: -15px;
-    background: url('~assets/icons/corner-top.png');
-    background-size: contain;
-  }
-
-  &:after {
-    position: absolute;
-    content: "";
-    width: 40px;
-    height: 40px;
-    bottom: -15px;
-    right: -15px;
-    background: url('~assets/icons/corner-bottom.png');
-    background-size: contain;
-  }
-}
-
-.avatar {
-  margin: 10px;
-  width: 160px;
-  height: 250px;
-  background-image: url('~assets/images/no-photo.png');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.user-name-wrapper {
-  font-size: 26px;
-  margin-bottom: 20px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid $border-color;
+.services-list-wrapper {
+  margin-top: 30px;
   display: flex;
   justify-content: center;
+  margin-bottom: -8px;
 }
 
-.item-wrapper {
-  margin-bottom: 16px;
+.service {
+  padding: 6px 10px;
+  background-color: $main-color;
+  border-radius: 20px;
+  margin-bottom: 8px;
+
+  & + & {
+    margin-left: 8px;
+  }
+
+  &:hover {
+    background-color: $third-color;
+    transition: background-color 300ms;
+  }
+}
+
+.gallery-wrapper {
+  margin-top: 20px;
+}
+
+.photos-wrapper {
+  width: 100%;
+  height: 140px;
+  background-color: #ffffff;
+  border: 1px solid #6e5a2f;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-gap: 10px;
+  padding: 10px;
+}
+
+// todo фото из БД
+.photo {
+  background-image: url("https://i.pinimg.com/originals/13/7a/c5/137ac59417814f8de32b6701fb584a08.jpg");
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.caption-wrapper {
   display: flex;
-  border-bottom: 1px dashed $border-color;
-  padding-left: 8px;
-  padding-bottom: 2px;
-  min-height: 22px;
+  justify-content: center;
+  margin-top: 10px;
+  font-size: 14px;
+  margin-right: -20px;
+}
+
+.info-wrapper {
+  margin-top: 10px;
 }
 
 .caption {
-  padding-right: 8px;
+  font-size: 20px;
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid $border-color;
+  margin-bottom: 20px;
 }
 
-.text-wrapper {
+.stickers-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 16px
+}
+
+.sticker {
+  line-height: 24px;
   font-size: 14px;
+  background-color: $sticker-yellow;
+  padding: 10px;
+  border: 1px solid $border-color;
+  border-radius: 2px;
+  box-shadow: 1px 3px 4px 1px $box-shadow;
 }
