@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GetUserByNicknameResponse } from '@common/interfaces/api/get-user-by-nickname-response.interface';
 import { UserModel } from '@common/interfaces/models/user.model';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { SessionService } from '@common/services/session.service';
-import { takeUntil } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { RoleEnum } from '@common/enums/role.enum';
 
 @Component({
@@ -13,30 +13,22 @@ import { RoleEnum } from '@common/enums/role.enum';
   styleUrls: ['./profile-page.component.scss']
 })
 export class ProfilePageComponent implements OnInit {
-  componentDestroyed$ = new Subject();
+  private readonly _user$ = new BehaviorSubject<UserModel>(null);
 
-  currentUser$ = new BehaviorSubject<UserModel>(null);
-  currentRoleIsClient$ = new BehaviorSubject<boolean>(null);
+  readonly currentUser$ = this._sessionService.user$;
+  readonly currentRoleIsClient$ = this._sessionService.isClient$;
 
-  user$ = new BehaviorSubject<UserModel>(null);
+  readonly user$ = this._user$.asObservable();
 
-  constructor(private activatedRoute: ActivatedRoute,
-              private sessionService: SessionService) {
-    this.currentUser$ = this.sessionService.user$;
+  constructor(private readonly _activatedRoute: ActivatedRoute,
+              private readonly _sessionService: SessionService) {
+    this.currentUser$ = this._sessionService.user$;
   }
 
   ngOnInit(): void {
-    const pageData: GetUserByNicknameResponse = this.activatedRoute.snapshot.data.pageData;
+    const pageData: GetUserByNicknameResponse = this._activatedRoute.snapshot.data.pageData;
     if (!pageData.error) {
-      this.user$.next(pageData.result);
+      this._user$.next(pageData.result);
     }
-
-    this.currentUser$
-      .pipe(takeUntil(this.componentDestroyed$))
-      .subscribe(() => {
-        if (this.currentUser$.value) {
-          this.currentRoleIsClient$.next(this.currentUser$.value.role === RoleEnum.CLIENT);
-        }
-      });
   }
 }

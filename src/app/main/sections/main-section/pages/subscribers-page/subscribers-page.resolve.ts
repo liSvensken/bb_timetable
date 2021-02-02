@@ -4,7 +4,7 @@ import { UsersSearchResponse } from '@common/interfaces/api/user-search-response
 import { UsersApiService } from '@common/services/api/users-api.service';
 import { Observable, of } from 'rxjs';
 import { UsersSearchRequest } from '@common/interfaces/api/users-search-request.interface';
-import { LIMIT_PAGE } from '../common/components/search/search.utils';
+import { LIMIT_PAGE } from '../../common/components/search/search.utils';
 import { catchError } from 'rxjs/operators';
 
 @Injectable()

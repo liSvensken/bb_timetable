@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersSearchRequest } from '@common/interfaces/api/users-search-request.interface';
-import { LIMIT_PAGE } from '../common/components/search/search.utils';
+import { LIMIT_PAGE } from '../../common/components/search/search.utils';
 
 @Component({
   selector: 'app-my-subscribers-page',

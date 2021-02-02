@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, finalize, switchMap, takeUntil, tap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, finalize, map, switchMap, takeUntil, tap } from 'rxjs/operators';
 import { UsersApiService } from '@common/services/api/users-api.service';
 import { UsersSearchRequest } from '@common/interfaces/api/users-search-request.interface';
 import { UserModel } from '@common/interfaces/models/user.model';
@@ -17,73 +17,71 @@ import { RoleEnum } from '@common/enums/role.enum';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit, OnDestroy {
-  @Input() linkBtn: string;
-  @Input() btnContent: string;
-  @Input() pageName: string;
-  @Input() modelRequest: UsersSearchRequest;
-  componentDestroyed$ = new Subject();
+  private readonly _componentDestroyed$ = new Subject();
+  private readonly _subscribersList$ = new BehaviorSubject<UserModel[]>(null);
+  private readonly _search$ = new Subject();
+  private _lastPage = false;
 
-  currentUser$ = new BehaviorSubject<UserModel>(null);
-  isMaster$ = new BehaviorSubject<boolean>(null);
+  @Input() readonly linkBtn: string;
+  @Input() readonly btnContent: string;
+  @Input() readonly pageName: string;
 
-  subscribersList$ = new BehaviorSubject<UserModel[]>(null);
-  lastPage = false;
-  search$ = new Subject();
-  isLoading$ = new BehaviorSubject(false);
-  isErrors$ = new BehaviorSubject(false);
+  @Input() readonly modelRequest: UsersSearchRequest;
 
-  formFilter = this.db.group({
+  // будет использоваться
+  readonly isMaster$ = this._sessionService.isMaster$;
+
+  readonly subscribersList$ = this._subscribersList$.asObservable();
+
+  readonly isLoading$ = new BehaviorSubject(false);
+  readonly isErrors$ = new BehaviorSubject(false);
+
+  readonly formFilter = this._db.group({
     query: [null],
     service: [null],
     city: [null],
   });
 
-  constructor(private activatedRoute: ActivatedRoute,
-              private db: FormBuilder,
-              private usersApiService: UsersApiService,
-              private sessionService: SessionService) {
-
-    this.currentUser$ = this.sessionService.user$;
-    this.isMaster$.next(this.currentUser$.value.role === RoleEnum.MASTER);
+  constructor(private readonly _activatedRoute: ActivatedRoute,
+              private readonly _db: FormBuilder,
+              private readonly _usersApiService: UsersApiService,
+              private readonly _sessionService: SessionService) {
   }
 
   ngOnInit(): void {
-    const pageData: UsersSearchResponse = this.activatedRoute.snapshot.data.pageData;
+    const pageData: UsersSearchResponse = this._activatedRoute.snapshot.data.pageData;
     if (pageData) {
       this.parseData(pageData);
       this.initSearch();
 
-      Object.keys(this.formFilter.controls).forEach(key => {
-        const control = this.formFilter.controls[key];
-        control.valueChanges
-          .pipe(
-            takeUntil(this.componentDestroyed$),
-            distinctUntilChanged()
-          )
-          .subscribe(() => this.search());
-      });
+      this.formFilter.valueChanges
+        .pipe(
+          debounceTime(300),
+          distinctUntilChanged(), // todo попросить у Данила глубокое сравнение объектов
+          takeUntil(this._componentDestroyed$),
+        )
+        .subscribe(() => this.search());
     } else {
       this.isErrors$.next(true);
     }
   }
 
   ngOnDestroy(): void {
-    this.componentDestroyed$.next();
-    this.componentDestroyed$.complete();
+    this._componentDestroyed$.next();
+    this._componentDestroyed$.complete();
   }
 
   initSearch(): void {
-    this.search$
+    this._search$
       .pipe(
-        debounceTime(300),
-        takeUntil(this.componentDestroyed$),
+        takeUntil(this._componentDestroyed$),
         tap(() => this.setLoading(true)),
         switchMap(() => {
           const model = {
             ...this.modelRequest,
             ...this.formFilter.value
           };
-          return this.usersApiService.searchUsers(cleanObject(model))
+          return this._usersApiService.searchUsers(cleanObject(model))
             .pipe(finalize(() => this.setLoading(false)));
         })
       )
@@ -96,8 +94,8 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   parseData(data: UsersSearchResponse): void {
     this.setSubscriberList(data.result);
-    if (this.subscribersList$.value.length >= data.totalItems) {
-      this.lastPage = true;
+    if (this._subscribersList$.value.length >= data.totalItems) {
+      this._lastPage = true;
     }
   }
 
@@ -106,12 +104,12 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   setSubscriberList(subscriber: UserModel[]): void {
-    this.subscribersList$.next(subscriber ? subscriber : []);
+    this._subscribersList$.next(subscriber ? subscriber : []);
   }
 
   nextPage(): void {
-    if (!this.lastPage && !this.isLoading$.value) {
-      this.search$.next();
+    if (!this._lastPage && !this.isLoading$.value) {
+      this._search$.next();
     }
   }
 
@@ -120,6 +118,6 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   search(newPage?: boolean): void {
-    this.search$.next(newPage);
+    this._search$.next(newPage);
   }
 }

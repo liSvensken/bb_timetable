@@ -1,62 +1,38 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { MyCookiesService } from '@common/services/my-cookies.service';
 import { SessionService } from '@common/services/session.service';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { RoleEnum } from '@common/enums/role.enum';
-import { takeUntil } from 'rxjs/operators';
-import { UserModel } from '@common/interfaces/models/user.model';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-layout-header',
   templateUrl: './layout-header.component.html',
   styleUrls: ['./layout-header.component.scss']
 })
-export class LayoutHeaderComponent implements OnInit, OnDestroy {
-  currentUser$ = new BehaviorSubject<UserModel>(null);
-  roleIsMaster$ = new BehaviorSubject<boolean>(null);
-  roleIsClient$ = new BehaviorSubject<boolean>(null);
-  nickname$ = new BehaviorSubject<string>(null);
+export class LayoutHeaderComponent {
+  private readonly _isScroll$ = new BehaviorSubject(null);
 
-  componentDestroyed$ = new Subject();
+  readonly currentUser$ = this._sessionService.user$;
+  readonly roleIsMaster$ = this._sessionService.isMaster$;
+  readonly roleIsClient$ = this._sessionService.isClient$;
 
-  isScroll$ = new BehaviorSubject(null);
+  readonly isScroll = this._isScroll$.asObservable();
 
-  constructor(private myCookiesService: MyCookiesService,
-              private sessionService: SessionService) {
-    this.currentUser$ = this.sessionService.user$;
+  constructor(private readonly _myCookiesService: MyCookiesService,
+              private readonly _sessionService: SessionService) {
   }
 
-  ngOnInit(): void {
-    window.addEventListener('scroll', this.scroll);
-
-    this.currentUser$
-      .pipe(takeUntil(this.componentDestroyed$))
-      .subscribe(() => {
-        if (this.currentUser$.value) {
-          this.roleIsMaster$.next(this.currentUser$.value.role === RoleEnum.MASTER);
-          this.roleIsClient$.next(this.currentUser$.value.role === RoleEnum.CLIENT);
-          this.nickname$.next(this.currentUser$.value.nickname);
-        }
-      });
-  }
-
-  ngOnDestroy(): void {
-    window.removeEventListener('scroll', this.scroll);
-
-    this.componentDestroyed$.next();
-    this.componentDestroyed$.complete();
-  }
-
-  scroll = (event): void => {
+  @HostListener('window:scroll') scroll(): void {
     // если расстоние от верха страницы !== 0
     if (window.pageYOffset) {
-      this.isScroll$.next(true);
+      this._isScroll$.next(true);
     } else {
-      this.isScroll$.next(false);
+      this._isScroll$.next(false);
     }
   }
 
   logOut(): void {
-    this.myCookiesService.removeToken();
+    this._myCookiesService.removeToken();
   }
 }

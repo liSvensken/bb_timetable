@@ -1,4 +1,4 @@
-@import "colors";
+@import "src/app/common/styles/colors";
 
 .grid-wrapper {
   width: 100%;
@@ -48,7 +48,7 @@
 }
 
 .avatar {
-  background-image: url('~assets/images/no-photo.png');
+  background-image: url('../../../../../../../../../assets/images/no-photo.png');
   width: 80px;
   height: 80px;
   background-repeat: no-repeat;
@@ -58,7 +58,7 @@
 }
 
 .btn-calendar {
-  background-image: url('~assets/icons/calendar-3.svg');
+  background-image: url('../../../../../../../../../assets/icons/calendar-3.svg');
   background-size: contain;
   width: 24px;
   height: 24px;

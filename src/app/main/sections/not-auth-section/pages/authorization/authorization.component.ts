@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthApiService } from '@common/services/api/auth-api.service';
+import { AuthApiService } from '@common/services/api/auth-api/auth-api.service';
 import { MyCookiesService } from '@common/services/my-cookies.service';
 import { SessionService } from '@common/services/session.service';
 
@@ -10,7 +10,7 @@ import { SessionService } from '@common/services/session.service';
   templateUrl: './authorization.component.html',
   styleUrls: ['./authorization.component.scss']
 })
-export class AuthorizationComponent implements OnInit {
+export class AuthorizationComponent {
   form = this.fb.group({
     login: ['liza', [Validators.required, Validators.minLength(3)]],
     password: ['372992ldl', [Validators.required]]
@@ -21,10 +21,6 @@ export class AuthorizationComponent implements OnInit {
               private router: Router,
               private myCookiesService: MyCookiesService,
               private sessionService: SessionService) {
-  }
-
-  ngOnInit(): void {
-
   }
 
   submit(): void {

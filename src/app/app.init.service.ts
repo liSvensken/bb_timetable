@@ -1,4 +1,4 @@
-import { AuthApiService } from '@common/services/api/auth-api.service';
+import { AuthApiService } from '@common/services/api/auth-api/auth-api.service';
 import { Injectable } from '@angular/core';
 import { MyCookiesService } from '@common/services/my-cookies.service';
 import { take } from 'rxjs/operators';

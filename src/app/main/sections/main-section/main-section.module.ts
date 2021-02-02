@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { MainSectionComponent } from './main-section.component';
-import { SubscribersPageModule } from './pages/subscribers/subscribers-page/subscribers-page.module';
-import { MySubscribersPageModule } from './pages/subscribers/my-subscribers-page/my-subscribers-page.module';
+import { SubscribersPageModule } from './pages/subscribers-page/subscribers-page.module';
+import { MySubscribersPageModule } from './pages/my-subscribers-page/my-subscribers-page.module';
 
 const routes: Routes = [
   {
@@ -12,12 +12,12 @@ const routes: Routes = [
     children: [
       {
         path: 'my-subscribers',
-        loadChildren: () => import('./pages/subscribers/my-subscribers-page/my-subscribers-page.module')
+        loadChildren: () => import('./pages/my-subscribers-page/my-subscribers-page.module')
           .then(m => m.MySubscribersPageModule)
       },
       {
         path: 'subscribers',
-        loadChildren: () => import('./pages/subscribers/subscribers-page/subscribers-page.module')
+        loadChildren: () => import('./pages/subscribers-page/subscribers-page.module')
           .then(m => m.SubscribersPageModule)
       },
       {

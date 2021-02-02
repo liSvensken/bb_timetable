@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { MyCookiesService } from '@common/services/my-cookies.service';
 import { duplicatePasswords } from '@common/utils/validations.utils';
-import { AuthApiService } from '@common/services/api/auth-api.service';
+import { AuthApiService } from '@common/services/api/auth-api/auth-api.service';
 import { SessionService } from '@common/services/session.service';
 
 @Component({
